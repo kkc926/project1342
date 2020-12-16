@@ -9,7 +9,9 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@aws-amplify/ui-components": "^0.9.7",
     "@quasar/extras": "^1.0.0",
+    "aws-amplify": "^3.3.12",
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "quasar": "^1.0.0"

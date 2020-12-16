@@ -31,6 +31,7 @@
           to="/"
           class="large-screen-only"
           />
+        <q-btn v-on:click="gLogin" />
       </q-toolbar>
 
     </q-header>
@@ -60,10 +61,36 @@
 </template>
 
 <script>
+// import { onAuthUIStateChange, AuthState } from '@aws-amplify/ui-components'
+import { Auth } from 'aws-amplify'
+
 export default {
   name: 'MainLayout',
+  // created() {
+  //   onAuthUIStateChange((authState, authData) => {
+  //     this.authState = authState;
+  //     this.user = authData;
+  //     if(authState === AuthState.VerifyContact){
+  //       console.log('verifying!')
+  //     }
+  //   })
+  // },
 
-  data () {
+  methods: {
+    async gLogin(){
+      await Auth.federatedSignIn({ provider: 'Google' })
+      console.log(res)
+    },
+    async checkUser(){
+      const user = await Auth.currentAuthenticatedUser()
+      console.log('user: ', user)
+    },
+    async signOut(){
+            await Auth.signOut()
+        }
+  },
+
+  data() {
     return {
 
     }
