@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Amplify from 'aws-amplify'
+import awsmobile from '../aws-exports'
 
 import routes from './routes'
+import store from '../store/store'
 
 Vue.use(VueRouter)
+Amplify.configure(awsmobile);
 
 /*
  * If not building with SSR mode, you can

@@ -10,27 +10,20 @@
           rount
           dense
           size="18px"
-          icon="eva-camera-outline" 
-          to="/camera"
-          class="large-screen-only q-mr-sm"
+          icon="eva-home-outline" 
+          to="/"
           />
           <q-separator vertical
           spaced
-          class="large-screen-only"/>
+          />
           
         <q-toolbar-title
         class="text-grand-hotel text-bold">
           BetweenCloset
         </q-toolbar-title>
-      <q-btn
-          flat
-          rount
-          dense
-          size="18px"
-          icon="eva-home-outline" 
-          to="/"
-          class="large-screen-only"
-          />
+        <q-btn v-on:click="gLogin" />
+        <q-btn color="purple" v-on:click="signOut" />
+        <q-btn color="yellow" v-on:click="checkUser" />
       </q-toolbar>
 
     </q-header>
@@ -60,10 +53,40 @@
 </template>
 
 <script>
+// import { onAuthUIStateChange, AuthState } from '@aws-amplify/ui-components'
+import { Auth } from 'aws-amplify'
+
 export default {
   name: 'MainLayout',
+  // created() {
+  //   onAuthUIStateChange((authState, authData) => {
+  //     this.authState = authState;
+  //     this.user = authData;
+  //     if(authState === AuthState.VerifyContact){
+  //       console.log('verifying!')
+  //     }
+  //   })
+  // },
 
-  data () {
+  methods: {
+    async gLogin(){
+      await Auth.federatedSignIn({ provider: 'Google' })
+      .then(res => {
+        console.log(res);
+        this.$emit("login",Auth.currentAuthenticatedUser());
+        // this.$store.commit('Account/userSignInDone',Auth.currentAuthenticatedUser())
+      })
+    },
+    async checkUser(){
+      const user = await Auth.currentAuthenticatedUser()
+      console.log('user: ', user)
+    },
+    async signOut(){
+            await Auth.signOut()
+        }
+  },
+
+  data() {
     return {
 
     }
