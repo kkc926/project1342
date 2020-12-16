@@ -10,28 +10,20 @@
           rount
           dense
           size="18px"
-          icon="eva-camera-outline" 
-          to="/camera"
-          class="large-screen-only q-mr-sm"
+          icon="eva-home-outline" 
+          to="/"
           />
           <q-separator vertical
           spaced
-          class="large-screen-only"/>
+          />
           
         <q-toolbar-title
         class="text-grand-hotel text-bold">
           BetweenCloset
         </q-toolbar-title>
-      <q-btn
-          flat
-          rount
-          dense
-          size="18px"
-          icon="eva-home-outline" 
-          to="/"
-          class="large-screen-only"
-          />
-        <q-btn v-on:click="gLogin" />
+        <q-btn label="로그인" v-on:click="gLogin" />
+        <q-btn label="정보" v-on:click="signOut" />
+        <q-btn label="로그아웃" v-on:click="checkUser" />
       </q-toolbar>
 
     </q-header>
@@ -79,7 +71,11 @@ export default {
   methods: {
     async gLogin(){
       await Auth.federatedSignIn({ provider: 'Google' })
-      console.log(res)
+      .then(res => {
+        console.log(res);
+        this.$emit("login",Auth.currentAuthenticatedUser());
+        // this.$store.commit('Account/userSignInDone',Auth.currentAuthenticatedUser())
+      })
     },
     async checkUser(){
       const user = await Auth.currentAuthenticatedUser()

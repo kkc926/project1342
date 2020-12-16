@@ -6,11 +6,8 @@ const routes = [
     children: [
       { path: '/', component: () => import('pages/PageHome.vue') },
       { path: '/camera', component: () => import('pages/PageCamera.vue') },
-<<<<<<< HEAD
       { path: '/profile', component: () => import('pages/PageProfile.vue') }
-=======
-      { path: '/profile', component: () => import('pages/Profile.vue') }
->>>>>>> 4fab4493eb52cfbece8232cdec8b53f724472836
+      // { path: '/profile', component: () => import('pages/Profile.vue') }
     ]
   },
   // Always leave this as last one,
