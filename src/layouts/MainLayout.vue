@@ -48,12 +48,18 @@
           to="/"
           icon="eva-home-outline" />
         <q-route-tab
-          to="/camera"
-          icon="eva-camera-outline" />
+          to="/friendsearch"
+          icon="eva-person-add-outline" />
+          <q-route-tab
+          to="/friendlist"
+          icon="eva-people-outline" />
+          <q-route-tab
+          to="/mypage"
+          icon="eva-person-outline" />
       </q-tabs>
       </q-footer>
 
-    <q-page-container>
+    <q-page-container class="bg-grey-1">
       <router-view />
     </q-page-container>
   </q-layout>

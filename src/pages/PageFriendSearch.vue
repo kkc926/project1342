@@ -1,11 +1,11 @@
 <template>
   <q-page class="flex flex-center">
-    <h5>Camera Page</h5>
+    <h5>FriendSearchPage</h5>
   </q-page>
 </template>
 
 <script>
 export default {
-  name: 'CameraPage'
+  name: 'FriendSearchPage'
 }
 </script>
