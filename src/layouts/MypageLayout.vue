@@ -5,58 +5,54 @@
     bordered
     >
       <q-toolbar class="constrain">
-        <q-btn
-          flat
-          rount
-          dense
-          size="18px"
-          icon="eva-camera-outline" 
-          to="/camera"
-          class="large-screen-only q-mr-sm"
-          />
-          <q-separator vertical
-          spaced
-          class="large-screen-only"/>
-          
+
         <q-toolbar-title
         class="text-grand-hotel text-bold">
           BetweenCloset
         </q-toolbar-title>
-      <q-btn
-          flat
-          rount
-          dense
-          size="18px"
-          icon="eva-home-outline" 
-          to="/"
-          class="large-screen-only"
-          />
-      </q-toolbar>
 
+      </q-toolbar>
     </q-header>
 
       <q-footer
-        class="bg-white small-screen-only"
+        class="bg-white"
         bordered>
-
-        <q-tabs
+        <q-tabs    
+        inline-label
+        mobile-arrows   
           class="text-grey-10"
           
           indicator-color="transparent">
-
-        <q-route-tab
+                <q-btn
+          flat
+          size="18px"
+          icon="eva-home-outline" 
           to="/"
-          icon="eva-home-outline" />
-        <q-route-tab
-          to="/friendsearch"
-          icon="eva-person-add-outline" />
+          />
+
           <q-route-tab
-          to="/friendlist"
-          icon="eva-people-outline" />
+          to="/mypage/jacket"
+          label="Jacket" 
+          />
+          <q-route-tab 
+          to="/mypage/tshirt"
+          label="T-shirt" 
+          />
           <q-route-tab
+          to="/mypage/pants"
+          label="Pants" />
+          <q-route-tab
+          to="/mypage/onepiece"
+          label="Onepiece" />
+         <q-btn
+          flat
+          size="18px"
+          icon="eva-person-outline" 
           to="/mypage"
-          icon="eva-person-outline" />
+          />
+
       </q-tabs>
+
       </q-footer>
 
     <q-page-container class="bg-grey-1">

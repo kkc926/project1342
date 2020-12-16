@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <h5>FriendSearchPage</h5>
+    <h5>PageFriendSearchPage.vue</h5>
   </q-page>
 </template>
 
