@@ -14,6 +14,7 @@
     "aws-amplify": "^3.3.12",
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
+    "oauth-sign": "^0.9.0",
     "quasar": "^1.0.0"
   },
   "devDependencies": {

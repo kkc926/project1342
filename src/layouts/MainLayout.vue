@@ -22,6 +22,8 @@
           BetweenCloset
         </q-toolbar-title>
         <q-btn v-on:click="gLogin" />
+        <q-btn color="purple" v-on:click="signOut" />
+        <q-btn color="yellow" v-on:click="checkUser" />
       </q-toolbar>
 
     </q-header>
@@ -69,7 +71,11 @@ export default {
   methods: {
     async gLogin(){
       await Auth.federatedSignIn({ provider: 'Google' })
-      console.log(res)
+      .then(res => {
+        console.log(res);
+        this.$emit("login",Auth.currentAuthenticatedUser());
+        // this.$store.commit('Account/userSignInDone',Auth.currentAuthenticatedUser())
+      })
     },
     async checkUser(){
       const user = await Auth.currentAuthenticatedUser()

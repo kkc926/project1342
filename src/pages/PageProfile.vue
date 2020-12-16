@@ -1,39 +1,23 @@
 <template>
-    <q-list>
-        <q-item>
-            <q-item-section avatar>
-                <q-avatar size="70px" class="profile">
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-                </q-avatar>
-                <q-item-label size="14" caption class="name">김민지</q-item-label>
-            </q-item-section>
-
-            <q-item-section>
-                <q-item-label>36</q-item-label>
-                <q-item-label caption>
-                코디
-                </q-item-label>
-            </q-item-section>
-            <q-item-section>
-                <q-item-label>20</q-item-label>
-                <q-item-label caption>
-                친구
-                </q-item-label>
-            </q-item-section>
-        </q-item>
-        <q-item>
-            <photo-tabs/>
-        </q-item>
-    </q-list>
+    <q-page>
+        <q-list>
+            <user-profile />
+            <q-item>
+                <photo-tabs class="ms" />
+            </q-item>
+    `   </q-list>
+    </q-page>
 </template>
 
 <script>
+import UserProfile from '../components/UserProfile.vue'
 import PhotoTabs from '../components/PhotoTabs.vue'
 
 export default {
   name: 'PageProfile',
   components: {
-    PhotoTabs
+    PhotoTabs,
+    UserProfile
   },
 }
 
