@@ -5,10 +5,10 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '/', component: () => import('pages/PageHome.vue') },
-      { path: '/camera', component: () => import('pages/PageCamera.vue') }
+      { path: '/camera', component: () => import('pages/PageCamera.vue') },
+      { path: '/profile', component: () => import('pages/Profile.vue') }
     ]
   },
-
   // Always leave this as last one,
   // but you can also remove it
   {
