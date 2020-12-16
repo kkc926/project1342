@@ -10,27 +10,17 @@
           rount
           dense
           size="18px"
-          icon="eva-camera-outline" 
-          to="/camera"
-          class="large-screen-only q-mr-sm"
+          icon="eva-home-outline" 
+          to="/"
           />
           <q-separator vertical
           spaced
-          class="large-screen-only"/>
+          />
           
         <q-toolbar-title
         class="text-grand-hotel text-bold">
           BetweenCloset
         </q-toolbar-title>
-      <q-btn
-          flat
-          rount
-          dense
-          size="18px"
-          icon="eva-home-outline" 
-          to="/"
-          class="large-screen-only"
-          />
         <q-btn v-on:click="gLogin" />
       </q-toolbar>
 
