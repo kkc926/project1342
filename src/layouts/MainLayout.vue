@@ -23,6 +23,7 @@
         <q-btn label="로그인" v-on:click="gLogin" />
         <q-btn label="정보" v-on:click="checkUser" />
         <q-btn label="유저" v-on:click="getUserName" />
+        {{user.data.name}}
       </q-toolbar>
 
     </q-header>
@@ -73,7 +74,8 @@ export default {
     return{
       isLogin:false,
       userInfo:false,
-      cat:false
+      cat:false,
+      user:null
     }
   },
 
@@ -106,16 +108,15 @@ export default {
     },
 
     // 헤더 포함한 겟 요청
-    getUserName(){
+    async getUserName(){
       let reqHeader = { headers:{
         'Content-Type':'application/json',
-        'Authorization': this.idToken
+        'Authorization': await this.idToken
         }
       }
-      Axios.get("https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user", reqHeader).then(res=>
-      this.userInfo = res)
+      this.user = await Axios.get("https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user", reqHeader)
       console.log("success")
-      console.log(this.userInfo)
+      // console.log()
     },
 
     //헤더 없는 겟 요청
@@ -130,18 +131,21 @@ export default {
   },
 
   computed:{
-    accessToken : function(){
-      if(this.LoggedUser !== null)
-        return this.LoggedUser.signInUserSession.accessToken.jwtToken
+    ...mapGetters({
+      idToken:'account/idToken'
+    }),
+    // accessToken : function(){
+    //   if(this.LoggedUser !== null)
+    //     return this.LoggedUser.signInUserSession.accessToken.jwtToken
       
-      return null
-    },
-    idToken: function(){
-      if(this.LoggedUser !== null)
-        return this.LoggedUser.signInUserSession.idToken.jwtToken
+    //   return null
+    // },
+    // idToken: function(){
+    //   if(this.LoggedUser !== null)
+    //     return this.LoggedUser.signInUserSession.idToken.jwtToken
       
-      return null
-    }
+    //   return null
+    // }
   },
 
 }
