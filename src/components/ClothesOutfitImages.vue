@@ -1,5 +1,6 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md" style="padding: 0">
+    <!-- <div>{{ clothes.data.url }}</div> -->
     <div class="q-gutter-y-md" style="max-width: 600px">
       <q-card>
         <q-tabs
@@ -20,19 +21,20 @@
         <q-separator />
 
         <q-tab-panels v-model="tab" animated>
-          <q-tab-panel name="top">
-            <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
+          <q-tab-panel name="top" v-on:click="clothesClicked()">
+            <div
+              class="row q-col-gutter-x-xs q-col-gutter-y-lg"
+              style="margin: 0; padding: 0"
+            >
+              <!-- <div class="col-4" v-for="n in 9" :key="`none-${n}`"> -->
               <div
                 class="col-4"
-                v-for="n in 9"
-                :key="`none-${n}`"
-                style="padding-top: 4px"
+                v-for="item in clothes.data"
+                :key="`none-${item}`"
               >
-                <div class="my-content" v-on:click="topClicked()">
+                <div class="my-content">
                   <q-card style="border-radius: 0; box-shadow: 0">
-                    <q-img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlGq7vIrT5XFclOLmBmgHRf5kP5E5mx-awxg&usqp=CAU"
-                    />
+                    <q-img :src="item.url" />
                   </q-card>
                 </div>
               </div>
@@ -40,13 +42,11 @@
           </q-tab-panel>
 
           <q-tab-panel name="bottom">
-            <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
-              <div
-                class="col-4"
-                v-for="n in 9"
-                :key="`none-${n}`"
-                style="padding-top: 4px"
-              >
+            <div
+              class="row q-col-gutter-x-xs q-col-gutter-y-lg"
+              style="margin: 0; padding: 0"
+            >
+              <div class="col-4" v-for="n in 9" :key="`none-${n}`">
                 <div class="my-content" v-on:click="bottomClicked()">
                   <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img
@@ -59,13 +59,11 @@
           </q-tab-panel>
 
           <q-tab-panel name="outer">
-            <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
-              <div
-                class="col-4"
-                v-for="n in 9"
-                :key="`none-${n}`"
-                style="padding-top: 4px"
-              >
+            <div
+              class="row q-col-gutter-x-xs q-col-gutter-y-lg"
+              style="margin: 0; padding: 0"
+            >
+              <div class="col-4" v-for="n in 9" :key="`none-${n}`">
                 <div class="my-content" v-on:click="outerClicked()">
                   <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img
@@ -78,13 +76,11 @@
           </q-tab-panel>
 
           <q-tab-panel name="dress">
-            <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
-              <div
-                class="col-4"
-                v-for="n in 9"
-                :key="`none-${n}`"
-                style="padding-top: 4px"
-              >
+            <div
+              class="row q-col-gutter-x-xs q-col-gutter-y-lg"
+              style="margin: 0; padding: 0"
+            >
+              <div class="col-4" v-for="n in 9" :key="`none-${n}`">
                 <div class="my-content" v-on:click="dessClicked()">
                   <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img
@@ -102,17 +98,41 @@
 </template>
 
 <script>
+import Axios from "axios";
+import { mapGetters } from "vuex";
+
 export default {
   name: "ClothesOutfitImages",
   data() {
     return {
       tab: "top",
+      clothes: null,
+      clothesList: { type: Array, default: () => [] },
     };
   },
+  computed: {
+    ...mapGetters({
+      idToken: "account/idToken",
+    }),
+  },
+  mounted() {
+    this.clothesClicked();
+  },
   methods: {
-    topClicked() {
-      console.log("ee");
+    async clothesClicked() {
+      let reqHeader = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: await this.idToken,
+        },
+      };
+      this.clothes = await Axios.get(
+        "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes",
+        reqHeader
+      );
+      console.log(this.clothes.data);
     },
+    topClicked() {},
     bottomClicked() {},
     outerClicked() {},
     dessClicked() {
