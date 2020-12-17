@@ -15,7 +15,8 @@
     "axios": "^0.18.1",
     "core-js": "^3.6.5",
     "oauth-sign": "^0.9.0",
-    "quasar": "^1.0.0"
+    "quasar": "^1.0.0",
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0"

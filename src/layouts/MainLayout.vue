@@ -22,8 +22,8 @@
           BetweenCloset
         </q-toolbar-title>
         <q-btn label="로그인" v-on:click="gLogin" />
-        <q-btn label="정보" v-on:click="signOut" />
-        <q-btn label="로그아웃" v-on:click="checkUser" />
+        <q-btn label="정보" v-on:click="checkUser" />
+        <q-btn label="로그아웃" v-on:click="getUserName" />
       </q-toolbar>
 
     </q-header>
@@ -55,6 +55,7 @@
 <script>
 // import { onAuthUIStateChange, AuthState } from '@aws-amplify/ui-components'
 import { Auth } from 'aws-amplify'
+import Axios from 'axios'
 
 export default {
   name: 'MainLayout',
@@ -67,6 +68,7 @@ export default {
   //     }
   //   })
   // },
+
 
   methods: {
     async gLogin(){
@@ -83,7 +85,23 @@ export default {
     },
     async signOut(){
             await Auth.signOut()
+        },
+    async getUserName(){
+      let reqHeader = { headers:{
+        'Content-Type':'application/json',
+        'Authorization': this.idToken
         }
+      }
+      Axios.get("https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user", reqHeader).then(res=>this.userInfo = res)
+ 
+    },
+    testAxios() {     
+      Axios.get('https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/categories')
+        .then( res =>{
+          console.log( res)
+        })
+      console.log('finished')
+    }
   },
 
   data() {
