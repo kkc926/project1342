@@ -5,31 +5,24 @@
     bordered
     >
       <q-toolbar class="constrain">
-        <q-btn
-          flat
-          rount
-          dense
-          size="18px"
-          icon="eva-home-outline" 
-          to="/"
-          />
-          <q-separator vertical
-          spaced
-          />
+
           
         <q-toolbar-title
         class="text-grand-hotel text-bold">
           BetweenCloset
         </q-toolbar-title>
-        <q-btn label="로그인" v-on:click="gLogin" />
-        <q-btn label="정보" v-on:click="signOut" />
-        <q-btn label="로그아웃" v-on:click="checkUser" />
+        <q-btn label="로그인" v-on:click="gLogin" 
+        flat/>
+        <q-btn label="정보" v-on:click="checkUser" 
+        flat/>
+        <q-btn label="로그아웃" v-on:click="signOut" 
+        flat/>
       </q-toolbar>
 
     </q-header>
 
       <q-footer
-        class="bg-white small-screen-only"
+        class="bg-white"
         bordered>
 
         <q-tabs
@@ -41,12 +34,18 @@
           to="/"
           icon="eva-home-outline" />
         <q-route-tab
-          to="/camera"
-          icon="eva-camera-outline" />
+          to="/friendsearch"
+          icon="eva-person-add-outline" />
+          <q-route-tab
+          to="/friendlist"
+          icon="eva-people-outline" />
+          <q-route-tab
+          to="/mypage"
+          icon="eva-person-outline" />
       </q-tabs>
       </q-footer>
 
-    <q-page-container>
+    <q-page-container class="bg-grey-1">
       <router-view />
     </q-page-container>
   </q-layout>

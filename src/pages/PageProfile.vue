@@ -40,6 +40,9 @@ export default {
     ClothesOutfitImages,
     UserProfile
   },
+  mount() {
+      ClothesOutfitImages
+  }
 }
 
 </script>
