@@ -2,29 +2,56 @@
   <q-layout view="lHh Lpr lFf">
     <q-header class="bg-white text-grey-10" bordered>
       <q-toolbar class="constrain">
-        <q-btn flat rount dense size="18px" icon="eva-home-outline" to="/" />
-        <q-separator vertical spaced />
+        <q-toolbar-title  
+        id="toptoolbar" 
+        round 
+        dense
+        class="text-grand-hotel text-bold">
+          BetweenCloset
+        </q-toolbar-title>
+        
+        <q-btn class="loginbtn" 
+        v-if="user==null" label="로그인" v-on:click="gLogin" 
+        flat/>
+        <q-btn label="정보" v-on:click="checkUser"
+        flat/>
+        <!-- <q-btn label="정보2" v-on:click="testAxios"
+        flat/> -->
+        <q-btn label="유저" v-on:click="getUserName" flat/>
+        <q-btn v-if="user!=null" label="로그아웃" v-on:click="signOut" 
+        flat/>
+        <!-- {{user.data.name}} -->
+        <!-- <div v-if='user'> -->
 
-        <q-toolbar-title class="text-grand-hotel text-bold"> </q-toolbar-title>
-        <q-btn label="로그인" v-on:click="gLogin" />
-        <q-btn label="정보" v-on:click="checkUser" />
-        <q-btn label="유저" v-on:click="getUserName" />
-        {{ user.data.name }}
       </q-toolbar>
     </q-header>
 
-    <q-footer class="bg-white small-screen-only" bordered>
-      <q-tabs
-        class="text-grey-10"
-        active-color="primary"
-        indicator-color="transparent"
-      >
-        <q-route-tab to="/" icon="eva-home-outline" />
-        <q-route-tab to="/camera" icon="eva-camera-outline" />
+      <q-footer
+        class="bg-white"
+        bordered>
+
+        <q-tabs
+          class="text-grey-10"
+          active-color="primary"
+          indicator-color="transparent">
+
+        <q-route-tab
+          to="/"
+          icon="eva-home-outline" />
+        <q-route-tab
+          to="/friendsearch"
+          icon="eva-person-add-outline" />
+          <q-route-tab
+          to="/friendlist"
+          icon="eva-people-outline" />
+          <q-route-tab
+          to="/mypage"
+          icon="eva-person-outline" />
+
       </q-tabs>
     </q-footer>
 
-    <q-page-container>
+    <q-page-container class="bg-grey-1">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -57,6 +84,7 @@ export default {
     };
   },
 
+
   mounted() {
     this.checkLogin();
   },
@@ -85,6 +113,7 @@ export default {
     },
 
     // 헤더 포함한 겟 요청
+
     async getUserName() {
       let reqHeader = {
         headers: {
@@ -133,13 +162,15 @@ export default {
 </script>
 
 <style lang="sass">
-.q-toolbar
-  @media (min-width: $breakpoint-sm-min)
-    height: 77px
+  .loginbtn
+    float-right
+
+  .q-toolbar
+      height: 77px
   .q-toolbar__title
     font-size: 30px
-    @media (max-width: $breakpoint-xs-max)
-      text-align: center
+      
+
 
   .q-footer
     .q-tab__icon
