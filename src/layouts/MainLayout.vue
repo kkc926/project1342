@@ -19,11 +19,10 @@
           
         <q-toolbar-title
         class="text-grand-hotel text-bold">
-          BetweenCloset
         </q-toolbar-title>
         <q-btn label="로그인" v-on:click="gLogin" />
         <q-btn label="정보" v-on:click="checkUser" />
-        <q-btn label="로그아웃" v-on:click="getUserName" />
+        <q-btn label="유저" v-on:click="getUserName" />
       </q-toolbar>
 
     </q-header>
@@ -56,6 +55,7 @@
 // import { onAuthUIStateChange, AuthState } from '@aws-amplify/ui-components'
 import { Auth } from 'aws-amplify'
 import Axios from 'axios'
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MainLayout',
@@ -68,7 +68,18 @@ export default {
   //     }
   //   })
   // },
+  
+  data(){
+    return{
+      isLogin:false,
+      userInfo:false,
+      cat:false
+    }
+  },
 
+  mounted(){
+    this.checkLogin()
+  },
 
   methods: {
     async gLogin(){
@@ -86,29 +97,53 @@ export default {
     async signOut(){
             await Auth.signOut()
         },
-    async getUserName(){
+
+    async checkLogin(){
+      this.LoggedUser = await Auth.currentAuthenticatedUser() 
+      this.$store.dispatch('account/finishUserSignIn', this.LoggedUser)
+      this.getUserName()
+      console.log(this.getUserName)
+    },
+
+    // 헤더 포함한 겟 요청
+    getUserName(){
       let reqHeader = { headers:{
         'Content-Type':'application/json',
         'Authorization': this.idToken
         }
       }
-      Axios.get("https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user", reqHeader).then(res=>this.userInfo = res)
- 
+      Axios.get("https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user", reqHeader).then(res=>
+      this.userInfo = res)
+      console.log("success")
+      console.log(this.userInfo)
     },
+
+    //헤더 없는 겟 요청
     testAxios() {     
       Axios.get('https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/categories')
         .then( res =>{
-          console.log( res)
+          console.log(res)
+          this.cat = res
         })
       console.log('finished')
     }
   },
 
-  data() {
-    return {
-
+  computed:{
+    accessToken : function(){
+      if(this.LoggedUser !== null)
+        return this.LoggedUser.signInUserSession.accessToken.jwtToken
+      
+      return null
+    },
+    idToken: function(){
+      if(this.LoggedUser !== null)
+        return this.LoggedUser.signInUserSession.idToken.jwtToken
+      
+      return null
     }
-  }
+  },
+
 }
 </script>
 
