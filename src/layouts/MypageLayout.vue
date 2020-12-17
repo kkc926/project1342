@@ -75,11 +75,11 @@ export default {
 
 <style lang="sass">
   .q-toolbar
-    @media (min-width: $breakpoint-sm-min)
+    
       height: 77px
   .q-toolbar__title
     font-size: 30px
-    @media (max-width: $breakpoint-xs-max)
+    
       text-align: center
     
 

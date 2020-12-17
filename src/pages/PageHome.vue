@@ -32,6 +32,11 @@
           size="18px"
           icon="eva-heart-outline" 
           />
+          <q-btn id="like"
+          flat
+          size="18px"
+          icon="eva-heart" 
+          />
 
             <q-card-section>
         <div>{{ post.caption }}</div>

@@ -5,17 +5,23 @@
     bordered
     >
       <q-toolbar class="constrain">
-
-          
-        <q-toolbar-title
+        <q-toolbar-title  
+        id="toptoolbar" 
+        round 
+        dense
         class="text-grand-hotel text-bold">
+          BetweenCloset
         </q-toolbar-title>
-        <q-btn label="로그인" v-on:click="gLogin" 
+        
+        <q-btn class="loginbtn" 
+        v-if="user==null" label="로그인" v-on:click="gLogin" 
         flat/>
         <q-btn label="정보" v-on:click="checkUser"
         flat/>
-        <!-- <q-btn label="유저" v-on:click="getUserName" flat/> -->
-        <q-btn label="로그아웃" v-on:click="signOut" 
+        <!-- <q-btn label="정보2" v-on:click="testAxios"
+        flat/> -->
+        <q-btn label="유저" v-on:click="getUserName" flat/>
+        <q-btn v-if="user!=null" label="로그아웃" v-on:click="signOut" 
         flat/>
         <!-- {{user.data.name}} -->
         <!-- <div v-if='user'> -->
@@ -80,9 +86,9 @@ export default {
     }
   },
 
-  mounted(){
-    this.checkLogin()
-  },
+  // mounted(){
+  //   this.getUserName()
+  // },
 
   methods: {
     async gLogin(){
@@ -96,7 +102,6 @@ export default {
     async checkUser(){
       const user = await Auth.currentAuthenticatedUser()
       console.log('user: ', user)
-      console.log(this.isSignIn)
     },
     async signOut(){
             await Auth.signOut()
@@ -116,6 +121,7 @@ export default {
         'Authorization': await this.idToken
         }
       }
+      console.log("시도!")
       this.user = await Axios.get("https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user", reqHeader)
       console.log("success")
       // console.log()
@@ -135,7 +141,7 @@ export default {
   computed:{
     ...mapGetters({
       idToken:'account/idToken',
-      isSignIn: 'acccount/isSignIn'
+      
     }),
     // accessToken : function(){
     //   if(this.LoggedUser !== null)
@@ -155,18 +161,20 @@ export default {
 </script>
 
 <style lang="sass">
+  .loginbtn
+    float-right
+
   .q-toolbar
-    @media (min-width: $breakpoint-sm-min)
       height: 77px
   .q-toolbar__title
     font-size: 30px
-    @media (max-width: $breakpoint-xs-max)
-      text-align: center
+      
     
 
   .q-footer
     .q-tab__icon
       font-size: 30px
+
 
 
 </style>

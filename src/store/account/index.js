@@ -19,7 +19,6 @@ export default{
         accessToken:null,
         idToken:null,
         userInfo:null,
-        isSignIn:null
     },
     getters:{
         isSignIn:state=>{
