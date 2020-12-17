@@ -4,7 +4,7 @@ import Amplify from 'aws-amplify'
 import awsmobile from '../aws-exports'
 
 import routes from './routes'
-import store from '../store/store'
+
 
 Vue.use(VueRouter)
 Amplify.configure(awsmobile);
