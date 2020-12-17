@@ -24,11 +24,11 @@
             <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
               <div
                 class="col-4"
-                v-for="n in 12"
+                v-for="n in 9"
                 :key="`none-${n}`"
                 style="padding-top: 4px"
               >
-                <div class="my-content" v->
+                <div class="my-content" v-on:click="topClicked()">
                   <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlGq7vIrT5XFclOLmBmgHRf5kP5E5mx-awxg&usqp=CAU"
@@ -43,11 +43,11 @@
             <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
               <div
                 class="col-4"
-                v-for="n in 12"
+                v-for="n in 9"
                 :key="`none-${n}`"
                 style="padding-top: 4px"
               >
-                <div class="my-content" v->
+                <div class="my-content" v-on:click="bottomClicked()">
                   <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img
                       src="https://i0.codibook.net/files/thumb/big/1976060716229/2a6104493bc7ed/1631194670.jpg"
@@ -62,11 +62,11 @@
             <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
               <div
                 class="col-4"
-                v-for="n in 12"
+                v-for="n in 9"
                 :key="`none-${n}`"
                 style="padding-top: 4px"
               >
-                <div class="my-content" v->
+                <div class="my-content" v-on:click="outerClicked()">
                   <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img
                       src="https://i0.codibook.net/files/thumb/big/1975072941997/1bbfba10c854/1809426185.jpg"
@@ -81,11 +81,11 @@
             <div class="row q-col-gutter-x-xs q-col-gutter-y-lg">
               <div
                 class="col-4"
-                v-for="n in 12"
+                v-for="n in 9"
                 :key="`none-${n}`"
                 style="padding-top: 4px"
               >
-                <div class="my-content" v->
+                <div class="my-content" v-on:click="dessClicked()">
                   <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img
                       src="https://i0.codibook.net/files/thumb/big/1975072941997/1bbfba10c854/1809426185.jpg"
@@ -108,6 +108,16 @@ export default {
     return {
       tab: "top",
     };
+  },
+  methods: {
+    topClicked() {
+      console.log("ee");
+    },
+    bottomClicked() {},
+    outerClicked() {},
+    dessClicked() {
+      console.log("ee");
+    },
   },
 };
 </script>
