@@ -9,14 +9,16 @@
           
         <q-toolbar-title
         class="text-grand-hotel text-bold">
-          BetweenCloset
         </q-toolbar-title>
-        <q-btn  label="로그인" v-on:click="gLogin" 
+        <q-btn label="로그인" v-on:click="gLogin" 
         flat/>
-        <q-btn label="정보" v-on:click="checkUser" 
+        <q-btn label="정보" v-on:click="checkUser"
         flat/>
+        <!-- <q-btn label="유저" v-on:click="getUserName" flat/> -->
         <q-btn label="로그아웃" v-on:click="signOut" 
         flat/>
+        <!-- {{user.data.name}} -->
+        <!-- <div v-if='user'> -->
       </q-toolbar>
 
     </q-header>
@@ -54,6 +56,8 @@
 <script>
 // import { onAuthUIStateChange, AuthState } from '@aws-amplify/ui-components'
 import { Auth } from 'aws-amplify'
+import Axios from 'axios'
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MainLayout',
@@ -66,6 +70,19 @@ export default {
   //     }
   //   })
   // },
+  
+  data(){
+    return{
+      isLogin:false,
+      userInfo:false,
+      cat:false,
+      user:null
+    }
+  },
+
+  mounted(){
+    this.checkLogin()
+  },
 
   methods: {
     async gLogin(){
@@ -79,17 +96,61 @@ export default {
     async checkUser(){
       const user = await Auth.currentAuthenticatedUser()
       console.log('user: ', user)
+      console.log(this.isSignIn)
     },
     async signOut(){
             await Auth.signOut()
+        },
+
+    async checkLogin(){
+      this.LoggedUser = await Auth.currentAuthenticatedUser() 
+      this.$store.dispatch('account/finishUserSignIn', this.LoggedUser)
+      this.getUserName()
+      console.log(this.getUserName)
+    },
+
+    // 헤더 포함한 겟 요청
+    async getUserName(){
+      let reqHeader = { headers:{
+        'Content-Type':'application/json',
+        'Authorization': await this.idToken
         }
+      }
+      this.user = await Axios.get("https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user", reqHeader)
+      console.log("success")
+      // console.log()
+    },
+
+    //헤더 없는 겟 요청
+    testAxios() {     
+      Axios.get('https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/categories')
+        .then( res =>{
+          console.log(res)
+          this.cat = res
+        })
+      console.log('finished')
+    }
   },
 
-  data() {
-    return {
+  computed:{
+    ...mapGetters({
+      idToken:'account/idToken',
+      isSignIn: 'acccount/isSignIn'
+    }),
+    // accessToken : function(){
+    //   if(this.LoggedUser !== null)
+    //     return this.LoggedUser.signInUserSession.accessToken.jwtToken
+      
+    //   return null
+    // },
+    // idToken: function(){
+    //   if(this.LoggedUser !== null)
+    //     return this.LoggedUser.signInUserSession.idToken.jwtToken
+      
+    //   return null
+    // }
+  },
 
-    }
-  }
 }
 </script>
 
