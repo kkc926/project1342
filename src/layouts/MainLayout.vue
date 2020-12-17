@@ -11,7 +11,7 @@
         class="text-grand-hotel text-bold">
           BetweenCloset
         </q-toolbar-title>
-        <q-btn label="로그인" v-on:click="gLogin" 
+        <q-btn  label="로그인" v-on:click="gLogin" 
         flat/>
         <q-btn label="정보" v-on:click="checkUser" 
         flat/>
