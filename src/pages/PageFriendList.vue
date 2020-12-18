@@ -1,67 +1,57 @@
 <template>
-    <q-page>
-        <q-item>
-            <q-item-section avatar class="col-4">
-                <q-avatar size="70px" class="profile">
-                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-                </q-avatar>
-                <q-item-label size="14" caption class="name">김민지</q-item-label>
-            </q-item-section>
+  <q-page>
+    <q-item>
+      <q-item-section avatar class="col-4">
+        <q-avatar size="70px" class="profile">
+          <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+        </q-avatar>
+        <q-item-label size="14" caption class="name">김민지</q-item-label>
+      </q-item-section>
 
-            <q-item-section class="col-4">
-                <q-item-label class="number">36</q-item-label>
-                <q-item-label caption>
-                코디
-                </q-item-label>
-            </q-item-section>
-            <q-item-section class="col-4">
-                <q-item-label class="number">20</q-item-label>
-                <q-item-label caption>
-                친구
-                </q-item-label>
-            </q-item-section>
-        </q-item>
-        <!-- <photo-tabs class="ms" /> -->
-        <!-- <div>
-            <clothes-outfit-images></clothes-outfit-images>
-        </div> -->
-        <q-separator class="lineline"/>
-    </q-page>
+      <q-item-section class="col-4">
+        <q-item-label class="number">36</q-item-label>
+        <q-item-label caption> 코디 </q-item-label>
+      </q-item-section>
+      <q-item-section class="col-4">
+        <q-item-label class="number">20</q-item-label>
+        <q-item-label caption> 친구 </q-item-label>
+      </q-item-section>
+    </q-item>
+    <q-separator class="lineline" />
+    <friends class="ms" />
+  </q-page>
 </template>
 
 <script>
-import UserProfile from '../components/UserProfile.vue'
-// import PhotoTabs from '../components/PhotoTabs.vue'
-// import ClothesOutfitImages from "src/components/ClothesOutfitImages.vue";
+import UserProfile from "../components/UserProfile.vue";
+import Friends from "../components/Friends.vue";
 
 export default {
-  name: 'PageProfile',
+  name: "PageFriendList",
   components: {
-    // PhotoTabs,
-    // ClothesOutfitImages,
-    UserProfile
+    UserProfile,
+    Friends,
   },
   // mount() {
   //     ClothesOutfitImages
   // }
-}
-
+};
 </script>
 <style scoped>
-.lineline{
+.lineline {
   margin-top: 36px;
 }
-.profile{
-    margin-top: 10px;
-    margin-right: 30px;
+.profile {
+  margin-top: 10px;
+  margin-right: 30px;
 }
-.name{
-    margin-left: 5px;
-    margin-top: 10px;
-    font-size: 16px;
+.name {
+  margin-left: 5px;
+  margin-top: 10px;
+  font-size: 16px;
 }
 
-.number{
-    font-size: 20px;
+.number {
+  font-size: 20px;
 }
 </style>

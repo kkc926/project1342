@@ -1,9 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header 
-    class="bg-white text-grey-10"
-    bordered
-    >
+    <q-header class="bg-white text-grey-10" bordered>
       <q-toolbar class="constrain">
         <q-toolbar-title  
         id="toptoolbar" 
@@ -25,8 +22,8 @@
         flat/>
         <!-- {{user.data.name}} -->
         <!-- <div v-if='user'> -->
-      </q-toolbar>
 
+      </q-toolbar>
     </q-header>
 
       <q-footer
@@ -50,8 +47,9 @@
           <q-route-tab
           to="/mypage"
           icon="eva-person-outline" />
+
       </q-tabs>
-      </q-footer>
+    </q-footer>
 
     <q-page-container class="bg-grey-1">
       <router-view />
@@ -61,12 +59,12 @@
 
 <script>
 // import { onAuthUIStateChange, AuthState } from '@aws-amplify/ui-components'
-import { Auth } from 'aws-amplify'
-import Axios from 'axios'
-import { mapGetters } from 'vuex';
+import { Auth } from "aws-amplify";
+import Axios from "axios";
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'MainLayout',
+  name: "MainLayout",
   // created() {
   //   onAuthUIStateChange((authState, authData) => {
   //     this.authState = authState;
@@ -76,88 +74,91 @@ export default {
   //     }
   //   })
   // },
-  
-  data(){
-    return{
-      isLogin:false,
-      userInfo:false,
-      cat:false,
-      user:null
-    }
+
+  data() {
+    return {
+      isLogin: false,
+      userInfo: false,
+      cat: false,
+      user: null,
+    };
   },
 
-  // mounted(){
-  //   this.getUserName()
-  // },
+
+  mounted() {
+    this.checkLogin();
+  },
 
   methods: {
-    async gLogin(){
-      await Auth.federatedSignIn({ provider: 'Google' })
-      .then(res => {
+    async gLogin() {
+      await Auth.federatedSignIn({ provider: "Google" }).then((res) => {
         console.log(res);
-        this.$emit("login",Auth.currentAuthenticatedUser());
+        this.$emit("login", Auth.currentAuthenticatedUser());
         // this.$store.commit('Account/userSignInDone',Auth.currentAuthenticatedUser())
-      })
+      });
     },
-    async checkUser(){
-      const user = await Auth.currentAuthenticatedUser()
-      console.log('user: ', user)
+    async checkUser() {
+      const user = await Auth.currentAuthenticatedUser();
+      console.log("user: ", user);
     },
-    async signOut(){
-            await Auth.signOut()
-        },
+    async signOut() {
+      await Auth.signOut();
+    },
 
-    async checkLogin(){
-      this.LoggedUser = await Auth.currentAuthenticatedUser() 
-      this.$store.dispatch('account/finishUserSignIn', this.LoggedUser)
-      this.getUserName()
-      console.log(this.getUserName)
+    async checkLogin() {
+      this.LoggedUser = await Auth.currentAuthenticatedUser();
+      this.$store.dispatch("account/finishUserSignIn", this.LoggedUser);
+      this.getUserName();
+      console.log(this.getUserName);
     },
 
     // 헤더 포함한 겟 요청
-    async getUserName(){
-      let reqHeader = { headers:{
-        'Content-Type':'application/json',
-        'Authorization': await this.idToken
-        }
-      }
-      console.log("시도!")
-      this.user = await Axios.get("https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user", reqHeader)
-      console.log("success")
+
+    async getUserName() {
+      let reqHeader = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: await this.idToken,
+        },
+      };
+      this.user = await Axios.get(
+        "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/user",
+        reqHeader
+      );
+      console.log("success");
       // console.log()
     },
 
     //헤더 없는 겟 요청
-    testAxios() {     
-      Axios.get('https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/categories')
-        .then( res =>{
-          console.log(res)
-          this.cat = res
-        })
-      console.log('finished')
-    }
+    testAxios() {
+      Axios.get(
+        "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/categories"
+      ).then((res) => {
+        console.log(res);
+        this.cat = res;
+      });
+      console.log("finished");
+    },
   },
 
-  computed:{
+  computed: {
     ...mapGetters({
-      idToken:'account/idToken',
-      
+      idToken: "account/idToken",
     }),
     // accessToken : function(){
     //   if(this.LoggedUser !== null)
     //     return this.LoggedUser.signInUserSession.accessToken.jwtToken
-      
+
     //   return null
     // },
     // idToken: function(){
     //   if(this.LoggedUser !== null)
     //     return this.LoggedUser.signInUserSession.idToken.jwtToken
-      
+
     //   return null
     // }
   },
-
-}
+};
 </script>
 
 <style lang="sass">
@@ -169,12 +170,9 @@ export default {
   .q-toolbar__title
     font-size: 30px
       
-    
+
 
   .q-footer
     .q-tab__icon
       font-size: 30px
-
-
-
 </style>
