@@ -1,11 +1,22 @@
-<template>
-  <q-page class="flex flex-center">
-    <h5>PageFriendSearchPage.vue</h5>
-  </q-page>
+<template >
+<input type="text" flat v-model="search" placeholder="search"/>
+
+
+
+
+  
 </template>
+
+
+
+
 
 <script>
 export default {
-  name: 'FriendSearchPage'
+  data(){
+    return{
+      search:""
+    }
+  }
 }
 </script>
