@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Amplify from 'aws-amplify'
-import awsmobile from '../aws-exports'
+import awsmobile from '../../aws-exports'
 
 import routes from './routes'
 
