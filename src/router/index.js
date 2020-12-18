@@ -42,7 +42,7 @@ if (!isLocalhost) {
 }
 
 // copy the constant config (aws-exports.js) because config is read only.
-var configUpdate = config;
+var configUpdate = awsmobile;
 // update the configUpdate constant with the good URLs
 configUpdate.oauth = oauth;
 // Configure Amplify with configUpdate
