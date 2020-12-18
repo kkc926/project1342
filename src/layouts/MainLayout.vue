@@ -32,8 +32,8 @@
 
         <q-tabs
           class="text-grey-10"
-          active-color="primary"
-          indicator-color="transparent">
+        
+          indicator-color='pink-4'>
 
         <q-route-tab
           to="/"
