@@ -4,7 +4,7 @@
           <q-avatar size="70px" class="profile">
           <img src="https://cdn.quasar.dev/img/boy-avatar.png">
           </q-avatar>
-          <q-item-label size="14" caption class="name">{{userName}}</q-item-label>
+          <q-item-label size="14" caption class="name">{{ userName }}</q-item-label>
           <div class="email">{{email}}</div>
       </q-item-section>
         <q-item-section class="col-4 info">

@@ -5,7 +5,7 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '/', component: () => import('pages/PageHome.vue') },
-      { path: '/friendlist', component: () => import('pages/PageFriend.vue') },
+      { path: '/friendlist', component: () => import('pages/PageFriendList.vue') },
       { path: '/friendsearch', component: () => import('pages/PageFriendSearch.vue') },
       { path: '/mypage', component: () => import('pages/PageProfile.vue') }
       // { path: '/profile', component: () => import('pages/Profile.vue') }
