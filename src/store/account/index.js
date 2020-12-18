@@ -39,6 +39,9 @@ export default{
         uid:state=>{
             return state.userInfo? state.userInfo.data.user_id : null
         },
+        friends:state=>{
+            return state.userInfo? state.userInfo.data.friends: null
+        },
     },
     mutations: {
         userSignInDone:function(state, data){

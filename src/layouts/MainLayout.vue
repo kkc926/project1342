@@ -144,6 +144,7 @@ export default {
   computed: {
     ...mapGetters({
       idToken: "account/idToken",
+
     }),
     // accessToken : function(){
     //   if(this.LoggedUser !== null)
