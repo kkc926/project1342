@@ -1,22 +1,21 @@
 <template>
   <q-page class="constrain q-pa-md">
     <q-card
-
       v-for="post in posts"
       :key="post.id"
       class="card-post q-mb-md"
       flat
-      bordered>
+      bordered
+    >
       <q-item>
         <q-item-section avatar>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+            <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
           </q-avatar>
         </q-item-section>
 
         <q-item-section>
-          <q-item-label
-          class="text-bold">yongin</q-item-label>
+          <q-item-label class="text-bold">yongin</q-item-label>
           <q-item-label caption>
             {{ post.location }}
           </q-item-label>
@@ -24,84 +23,71 @@
       </q-item>
 
       <q-separator />
-            <q-img
-        :src="post.imageUrl"
-      />
-      <q-btn id="like"
-          flat
-          size="18px"
-          icon="eva-heart-outline" 
-          />
-          <q-btn id="like"
-          flat
-          size="18px"
-          icon="eva-heart" 
-          />
+      <q-img :src="post.imageUrl" />
+      <q-btn id="like" flat size="18px" icon="eva-heart-outline" />
+      <q-btn id="like" flat size="18px" icon="eva-heart" />
 
-            <q-card-section>
+      <q-card-section>
         <div>{{ post.caption }}</div>
         <div class="text-caption text-grey">{{ post.date | niceDate }}</div>
       </q-card-section>
-
     </q-card>
   </q-page>
 </template>
 
 <script>
-import { date } from 'quasar'
+import { date } from "quasar";
 export default {
-  name: 'PageHome',
-  data(){
-    return{
-      posts:[
+  name: "PageHome",
+  data() {
+    return {
+      posts: [
         {
           id: 1,
-          caption: 'Golden Gate Bridge',
+          caption: "Golden Gate Bridge",
           date: 1608082620455,
-          location: 'Seoul, Korea',
-          imageUrl:"https://i.pinimg.com/564x/00/43/b9/0043b9e44eddfcbf5ae1e078c7d121e8.jpg",
+          location: "Seoul, Korea",
+          imageUrl:
+            "https://i.pinimg.com/564x/00/43/b9/0043b9e44eddfcbf5ae1e078c7d121e8.jpg",
         },
-                {
+        {
           id: 2,
-          caption: 'Golden Gate Bridge',
+          caption: "Golden Gate Bridge",
           date: 1608082620455,
-          location: 'Seoul, Korea',
-          imageUrl:"https://i.pinimg.com/564x/00/43/b9/0043b9e44eddfcbf5ae1e078c7d121e8.jpg",
+          location: "Seoul, Korea",
+          imageUrl:
+            "https://i.pinimg.com/564x/00/43/b9/0043b9e44eddfcbf5ae1e078c7d121e8.jpg",
         },
-                {
+        {
           id: 3,
-          caption: 'Golden Gate Bridge',
+          caption: "Golden Gate Bridge",
           date: 1608082620455,
-          location: 'Seoul, Korea',
-          imageUrl:"https://i.pinimg.com/564x/00/43/b9/0043b9e44eddfcbf5ae1e078c7d121e8.jpg",
+          location: "Seoul, Korea",
+          imageUrl:
+            "https://i.pinimg.com/564x/00/43/b9/0043b9e44eddfcbf5ae1e078c7d121e8.jpg",
         },
-                {
+        {
           id: 4,
-          caption: 'Golden Gate Bridge',
+          caption: "Golden Gate Bridge",
           date: 1608082620455,
-          location: 'Seoul, Korea',
-          imageUrl:"https://i.pinimg.com/564x/00/43/b9/0043b9e44eddfcbf5ae1e078c7d121e8.jpg",
+          location: "Seoul, Korea",
+          imageUrl:
+            "https://i.pinimg.com/564x/00/43/b9/0043b9e44eddfcbf5ae1e078c7d121e8.jpg",
         },
-
-
-
-      ]
-    }
-    
+      ],
+    };
   },
-    filters:{
-      niceDate(value){
-        return date.formatDate(value, 'MMMM D h:mmA')
-    }
-  }
-}
-
+  filters: {
+    niceDate(value) {
+      return date.formatDate(value, "MMMM D h:mmA");
+    },
+  },
+};
 </script>
 
 
 <style lang="sass">
-  .card-post
-    .q-img
-      min-height: 300px
-
+.card-post
+  .q-img
+    min-height: 300px
 </style>

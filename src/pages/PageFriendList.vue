@@ -54,4 +54,7 @@ export default {
 .number {
   font-size: 20px;
 }
+.q-list--bordered {
+  border: 0px solid rgba(0, 0, 0, 0.12);
+}
 </style>
