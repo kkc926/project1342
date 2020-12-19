@@ -38,6 +38,9 @@
         <q-route-tab
           to="/"
           icon="eva-home-outline" />
+          <q-route-tab
+          to="codi"
+          icon="eva-search-outline" />
         <q-route-tab
           to="/friendsearch"
           icon="eva-person-add-outline" />
