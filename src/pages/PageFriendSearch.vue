@@ -1,24 +1,30 @@
 <template >
   <div>
-    <find-friend v-model="name" />
-    <div>
+    <div style="margin-top: 15%; margin-bottom: 13%">
+      <input class="input_box" @input="myChange" />
       <q-btn @click="ssearch">검색</q-btn>
     </div>
     <div v-if="searched_user != null">
-      <q-item-label header>친구</q-item-label>
-      <q-item>
+      <q-separator class="lineline" />
+
+      <q-item-label style="margin-top: 3%" header>검색 결과</q-item-label>
+
+      <q-item
+        style="margin-bottom: 3%"
+        v-for="item in searched_user.data"
+        :key="`none-${item}`"
+      >
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white">
-            {{ searched_user.data[0]["name"].slice(0, 1) }}
+            {{ item["name"].slice(0, 1) }}
           </q-avatar>
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ searched_user.data[0]["name"] }}</q-item-label>
-          <q-item-label caption lines="1">{{
-            searched_user.data[0]["email"]
-          }}</q-item-label>
+          <q-item-label>{{ item["name"] }}</q-item-label>
+          <q-item-label caption lines="1">{{ item["email"] }}</q-item-label>
         </q-item-section>
+        <q-btn>프로필 보기</q-btn>
       </q-item>
     </div>
   </div>
@@ -27,10 +33,8 @@
 
 
 <script>
-import FindFriend from "src/components/FindFriend.vue";
 import Axios from "axios";
 export default {
-  components: { FindFriend },
   data: function () {
     return {
       name: null,
@@ -47,10 +51,28 @@ export default {
       );
       console.log(this.searched_user);
     },
+
+    myChange($event) {
+      this.name = $event.target.value;
+    },
   },
 };
 </script>
 
 <style>
 @import url(https://cdn.syncfusion.com/ej2/material.css);
+.input_box {
+  width: 50%;
+  margin-left: 15%;
+  margin-right: 2%;
+
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.00937em;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(221, 221, 221, 0.911);
+  color: rgba(0, 0, 0, 0.87);
+  padding: 2px 10px;
+}
 </style>
