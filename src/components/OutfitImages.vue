@@ -1,13 +1,13 @@
 <template>
-  <div class="q-pa-md" style="padding: 0">
-    <div class="q-gutter-y-md" style="max-width: 600px">
+  <div class="q-pa-xs" style="margin: 0; padding: 0">
+    <div class="q-gutter-y-xs" style="max-width: 600px; margin: 0; padding: 0">
       <div
-        class="row q-col-gutter-x-xs q-col-gutter-y-lg"
+        class="row q-col"
         style="margin: 0; padding: 0"
       >
-        <div class="col-4" v-for="n in 9" :key="`none-${n}`">
-          <div class="my-content" v-on:click="dessClicked()">
-            <q-card style="border-radius: 0; box-shadow: 0">
+        <div class="col-4" v-for="n in 9" :key="`none-${n}`" style="margin:0, padding: 0;">
+          <div class="my-content" v-on:click="dessClicked()" style="margin:0, padding: 0;">
+            <q-card style="border-radius: 0; box-shadow: 0; margin: 0; padding: 0;">
               <q-img
                 src="https://i0.codibook.net/files/thumb/big/1975072941997/1bbfba10c854/1809426185.jpg"
               />
@@ -72,8 +72,8 @@ export default {
 };
 </script>
 <style scoped>
-.q-gutter-y-ms,
-.q-gutter-ms {
+.q-gutter-y-md,
+.q-gutter-md {
   margin-top: 0;
 }
 </style>
