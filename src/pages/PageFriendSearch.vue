@@ -1,17 +1,43 @@
 <template >
-<div id="app">
-  <div style="margin:10% 25%;">
-    <br>
-    <ejs-autocomplete :dataSource='dataItem' :fields='dataFields'
-    placeholder="Select a game" popupWidth="250px"
-    popupHeight="400px">
-    </ejs-autocomplete>
+  <div id="app">
+    <div style="margin: 10% 25%">
+      <br />
+      <!-- <ejs-autocomplete
+        :dataSource="dataItem"
+        :fields="dataFields"
+        placeholder="친구를 찾아보세요"
+        popupWidth="250px"
+        popupHeight="400px"
+      >
+      </ejs-autocomplete -->
+      <input v-model="message" placeholder="여기를 수정해보세요" />
+      <q-item-section>
+        <q-btn
+          unelevated
+          color="primary"
+          label="검색"
+          v-on:click="search(`${message}`)"
+        />
+      </q-item-section>
+      <!-- 친구 목록 -->
+      <q-item-label header>친구</q-item-label>
+      <q-item v-if="searchFriend.data.name != null">
+        <q-item-section avatar>
+          <q-avatar color="primary" text-color="white">
+            {{ searchFriend.data.name.slice(0, 1) }}
+          </q-avatar>
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label>{{ searchFriend.data.name }}</q-item-label>
+          <q-item-label caption lines="1">{{
+            searchFriend.data.email
+          }}</q-item-label>
+        </q-item-section>
+      </q-item>
+    </div>
   </div>
-</div>
-
 </template>
-
-
 
 
 
@@ -19,27 +45,34 @@
 import Vue from "vue";
 import { AutoCompletePlugin } from "@syncfusion/ej2-vue-dropdowns";
 Vue.use(AutoCompletePlugin);
-import { DataManager, WebApiAdaptor } from '@aws-amplify/ui-components';
+import { DataManager, WebApiAdaptor } from "@aws-amplify/ui-components";
 
+import Axios from "axios";
+import { mapGetters } from "vuex";
 export default Vue.extend({
-  data: function(){
-    return{
-      dataItem:
-      [
-        {Id:'Game1',Game: 'Football'},
-        {Id:'Game2',Game: 'Basketball'},
-        {Id:'Game3',Game: 'Volleyball'},
-        {Id:'Game4',Game: 'Baseball'},
-        {Id:'Game5',Game: 'Badminton'},
-      ],
-      dataFields:{value: 'Game'}
-      
+  data: function () {
+    return {
+      searchFriend: null,
     };
-  }
+  },
+  computed: {
+    ...mapGetters({
+      idToken: "account/idToken",
+    }),
+  },
+  methods: {
+    async search(name) {
+      this.searchFriend = await Axios.get(
+        "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/search/".concat(
+          name
+        )
+      );
+      console.log("name >>>", this.searchFriend);
+    },
+  },
 });
 </script>
 
 <style>
 @import url(https://cdn.syncfusion.com/ej2/material.css);
-
 </style>

@@ -8,7 +8,8 @@ const routes = [
       { path: 'codi', component: () => import('pages/PageCodi.vue') },
       { path: '/friendlist', component: () => import('pages/PageFriendList.vue') },
       { path: '/friendsearch', component: () => import('pages/PageFriendSearch.vue') },
-      { path: '/mypage', component: () => import('pages/PageProfile.vue') }
+      { path: '/mypage', component: () => import('pages/PageProfile.vue') },
+      { path: '/recommendations', component: () => import('pages/PageRecommendations.vue') }
       // { path: '/profile', component: () => import('pages/Profile.vue') }
     ]
   },
