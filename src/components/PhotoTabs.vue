@@ -9,8 +9,8 @@
         align="justify"
         narrow-indicator
       >
-        <q-tab name="outfit" label="Outfit" />
-        <q-tab name="clothes" label="Clothes" />
+        <q-tab name="outfit" label="코디" />
+        <q-tab name="clothes" label="옷" />
       </q-tabs>
 
       <q-separator />
