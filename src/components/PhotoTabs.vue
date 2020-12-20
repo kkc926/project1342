@@ -21,7 +21,7 @@
           <outfit-images />
         </q-tab-panel>
         <q-tab-panel class="panel" name="history">
-          <outfit-images />
+          <outfit-history />
         </q-tab-panel>
         <q-tab-panel class="panel" name="clothes">
           <clothes-outfit-images />
@@ -33,12 +33,14 @@
 <script>
 import ClothesOutfitImages from "src/components/ClothesOutfitImages.vue";
 import OutfitImages from "./OutfitImages.vue";
+import OutfitHistory from './OutfitHistory.vue';
 
 export default {
   name: "PhotoTabs",
   components: {
     ClothesOutfitImages,
     OutfitImages,
+    OutfitHistory,
   },
   data() {
     return {

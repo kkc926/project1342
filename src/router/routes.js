@@ -8,7 +8,8 @@ const routes = [
       { path: '/friendlist', component: () => import('pages/PageFriendList.vue') },
       { path: '/friendsearch', component: () => import('pages/PageFriendSearch.vue') },
       { path: '/mypage', component: () => import('pages/PageProfile.vue') },
-      { path: '/recommendations', component: () => import('pages/PageRecommendations.vue') }
+      { path: '/recommendations', component: () => import('pages/PageRecommendations.vue') },
+      { path: '/outfitselect', component: () => import('pages/PageOutfitSelect.vue') }
       // { path: '/profile', component: () => import('pages/Profile.vue') }
     ]
   },
