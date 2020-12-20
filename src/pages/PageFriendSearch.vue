@@ -10,15 +10,13 @@
         popupHeight="400px"
       >
       </ejs-autocomplete -->
-      <input v-model="message" placeholder="여기를 수정해보세요" />
-      <q-item-section>
-        <q-btn
-          unelevated
-          color="primary"
-          label="검색"
-          v-on:click="search(`${message}`)"
-        />
-      </q-item-section>
+      <input v-model="message" placeholder="친구를 찾아보세요" />
+      <q-btn
+        unelevated
+        color="primary"
+        label="검색"
+        v-on:click="search(`${message}`)"
+      />
       <!-- 친구 목록 -->
       <q-item-label header>친구</q-item-label>
       <q-item v-if="searchFriend.data.name != null">
@@ -49,10 +47,12 @@ import { DataManager, WebApiAdaptor } from "@aws-amplify/ui-components";
 
 import Axios from "axios";
 import { mapGetters } from "vuex";
+
 export default Vue.extend({
   data: function () {
     return {
       searchFriend: null,
+      message: "mj",
     };
   },
   computed: {

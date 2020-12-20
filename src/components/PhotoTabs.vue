@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa">
+  <div>
     <div class="q-gutter-y" style="max-width: 800px">
       <q-tabs
         v-model="tab"
@@ -16,11 +16,11 @@
       <q-separator />
 
       <q-tab-panels v-model="tab" animated>
-        <q-tab-panel name="outfit">
+        <q-tab-panel class="panel" name="outfit">
           <outfit-images />
         </q-tab-panel>
 
-        <q-tab-panel name="clothes">
+        <q-tab-panel class="panel" name="clothes">
           <clothes-outfit-images />
         </q-tab-panel>
       </q-tab-panels>
@@ -44,3 +44,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.panel{
+  margin: 0px;
+  padding: 0px;
+}
+</style>
