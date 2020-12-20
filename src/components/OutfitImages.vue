@@ -72,8 +72,8 @@ export default {
 };
 </script>
 <style scoped>
-.q-gutter-y-md,
-.q-gutter-md {
+.q-gutter-y-ms,
+.q-gutter-ms {
   margin-top: 0;
 }
 </style>
