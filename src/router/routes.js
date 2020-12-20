@@ -10,11 +10,6 @@ const routes = [
       { path: '/friendsearch', component: () => import('pages/PageFriendSearch.vue') },
       { path: '/mypage', component: () => import('pages/PageProfile.vue') },
       { path: '/recommendations', component: () => import('pages/PageRecommendations.vue') },
-      { path: 'recommendations/1st', component: () => import('components/reco/1st.vue') },
-      { path: 'recommendations/1st', component: () => import('components/reco/1st.vue') },
-      { path: 'recommendations/2nd', component: () => import('components/reco/2nd.vue') },
-      { path: 'recommendations/3rd', component: () => import('components/reco/3rd.vue') },
-      { path: 'recommendations/4th', component: () => import('components/reco/4th.vue') },
 
 
       

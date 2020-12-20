@@ -1,12 +1,13 @@
 <template>
-  <q-page class="constrain q-pa-md">
-      <div class="q-pa-md">
+  <q-page class="constrain q-pa-sx">
+      <div class="q-pa-xs">
         <q-carousel
         v-model="slide"
         swipeable
         animated
         navigation
-        height="60px"
+        height="600px"
+        
         flat
         class="bg-grey-1"
         >
@@ -16,18 +17,7 @@
         </template>
 
         <q-carousel-slide name="1st" class="column no-wrap flex-center">
-        </q-carousel-slide>
-        <q-carousel-slide name="2nd" class="column no-wrap flex-center">
-        </q-carousel-slide>
-        <q-carousel-slide name="3rd" class="column no-wrap flex-center">
-        </q-carousel-slide>
-        <q-carousel-slide name="4th" class="column no-wrap flex-center">
-        </q-carousel-slide>
-        <q-carousel-slide name="5th" class="column no-wrap flex-center">
-        </q-carousel-slide>
-        </q-carousel>
-    </div>
-      <q-card
+                <q-card
         v-for="item in recoms.data"
                 :key="`none-${item}`"
         class="card-post q-mb-md"
@@ -42,6 +32,78 @@
             <div caption>{{item.likes}}명이 좋아했습니다</div>
         </q-item>
     </q-card>
+        </q-carousel-slide>
+        <q-carousel-slide name="2nd" class="column no-wrap flex-center">
+          <q-card
+        v-for="item in recoms.data"
+                :key="`none-${item}`"
+        class="card-post q-mb-md"
+        flat bordered
+        >
+        <q-item>
+            <q-img :src="item.url" />
+        </q-item>
+        <q-separator />
+        <q-item>
+            <q-btn id="like" flat size="18px" icon="eva-heart" />
+            <div caption>{{item.likes}}명이 좋아했습니다</div>
+        </q-item>
+    </q-card>
+        </q-carousel-slide>
+        <q-carousel-slide name="3rd" class="column no-wrap flex-center">
+          <q-card
+        v-for="item in recoms.data"
+                :key="`none-${item}`"
+        class="card-post q-mb-md"
+        flat bordered
+        >
+        <q-item>
+            <q-img :src="item.url" />
+        </q-item>
+        <q-separator />
+        <q-item>
+            <q-btn id="like" flat size="18px" icon="eva-heart" />
+            <div caption>{{item.likes}}명이 좋아했습니다</div>
+        </q-item>
+    </q-card>
+        </q-carousel-slide>
+        <q-carousel-slide name="4th" class="column no-wrap flex-center">
+          <q-card
+        v-for="item in recoms.data"
+                :key="`none-${item}`"
+        class="card-post q-mb-md"
+        flat bordered
+        >
+        <q-item>
+            <q-img :src="item.url" />
+        </q-item>
+        <q-separator />
+        <q-item>
+            <q-btn id="like" flat size="18px" icon="eva-heart" />
+            <div caption>{{item.likes}}명이 좋아했습니다</div>
+        </q-item>
+    </q-card>
+        </q-carousel-slide>
+        <q-carousel-slide name="5th" class="column no-wrap flex-center">
+          <q-card
+        v-for="item in recoms.data"
+                :key="`none-${item}`"
+        class="card-post q-mb-md"
+        flat bordered
+        >
+        <q-item>
+            <q-img :src="item.url" />
+        </q-item>
+        <q-separator />
+        <q-item>
+            <q-btn id="like" flat size="18px" icon="eva-heart" />
+            <div caption>{{item.likes}}명이 좋아했습니다</div>
+        </q-item>
+    </q-card>
+        </q-carousel-slide>
+        </q-carousel>
+    </div>
+
   </q-page>
 </template>
 
@@ -83,5 +145,6 @@ export default {
 <style lang="sass">
 .card-post
   .q-img
-    min-height: 300px
+    min-height: 320px
+    min-width:  320px
 </style>
