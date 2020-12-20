@@ -1,22 +1,7 @@
 <template >
   <div id="app">
-    <div style="margin: 10% 25%">
-      <br />
-      <ejs-autocomplete
-        :dataSource="dataItem"
-        :fields="dataFields"
-        v-model="message"
-        placeholder="친구를 찾아보세요"
-        popupWidth="250px"
-        popupHeight="400px"
-      >
-      </ejs-autocomplete>
-      <q-btn
-        unelevated
-        color="primary"
-        label="검색"
-        v-on:click="search(`${message}`)"
-      />
+    <div>
+      <input :value="value" @input="myChange" />
     </div>
   </div>
 </template>
@@ -33,9 +18,13 @@ import Axios from "axios";
 
 export default Vue.extend({
   name: "FindFriend",
+  props: {
+    value: {},
+  },
   data: function () {
     return {
       searchFriend: null,
+      pvalue: this.value,
     };
   },
   mounted() {
@@ -43,13 +32,17 @@ export default Vue.extend({
   },
   methods: {
     async search(name) {
-      console.log("sususu", name);
+      console.log("sususu", pvalue);
       this.searchFriend = await Axios.get(
         "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/search/".concat(
           name
         )
       );
       console.log(">>>>>>>>>>>", this.searchFriend);
+    },
+
+    myChange($event) {
+      this.$emit("input", $event.target.value);
     },
   },
 });
