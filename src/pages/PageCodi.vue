@@ -1,152 +1,87 @@
 <template>
-  <div class="q-pa-md">
-    <q-table
-      title="Treats"
-      :data="data"
-      :columns="columns"
-      row-key="name"
-      :selected-rows-label="getSelectedString"
-      selection="multiple"
-      :selected.sync="selected"
-    />
+  <q-page class="constrain q-pa-md">
+      <div class="q-pa-md">
+        <q-carousel
+        v-model="slide"
+        swipeable
+        animated
+        navigation
+        height="60px"
+        flat
+        class="bg-grey-1"
+        >
+        <template v-slot:navigation-icon="{ active, btnProps, onClick }">
+            <q-btn v-if="active" size="sm" :icon="btnProps.icon" color="pink-5" flat round dense @click="onClick" />
+            <q-btn v-else size="sm" :icon="btnProps.icon" color="white" flat round dense @click="onClick" />
+        </template>
 
-    <div class="q-mt-md">
-      Selected: {{ JSON.stringify(selected) }}
+        <q-carousel-slide name="1st" class="column no-wrap flex-center">
+        </q-carousel-slide>
+        <q-carousel-slide name="2nd" class="column no-wrap flex-center">
+        </q-carousel-slide>
+        <q-carousel-slide name="3rd" class="column no-wrap flex-center">
+        </q-carousel-slide>
+        <q-carousel-slide name="4th" class="column no-wrap flex-center">
+        </q-carousel-slide>
+        <q-carousel-slide name="5th" class="column no-wrap flex-center">
+        </q-carousel-slide>
+        </q-carousel>
     </div>
-  </div>
+      <q-card
+        v-for="item in recoms.data"
+                :key="`none-${item}`"
+        class="card-post q-mb-md"
+        flat bordered
+        >
+        <q-item>
+            <q-img :src="item.url" />
+        </q-item>
+        <q-separator />
+        <q-item>
+            <q-btn id="like" flat size="18px" icon="eva-heart" />
+            <div caption>{{item.likes}}명이 좋아했습니다</div>
+        </q-item>
+    </q-card>
+  </q-page>
 </template>
 
 <script>
+import { date } from "quasar";
+import Axios from "axios";
+import { mapGetters } from "vuex";
+
 export default {
-  data () {
+  name: "PageHome",
+  data() {
     return {
-      selected: [],
-      columns: [
-        {
-          name: 'desc',
-          required: true,
-          label: 'Dessert (100g serving)',
-          align: 'left',
-          field: row => row.name,
-          format: val => `${val}`,
-          sortable: true
-        },
-        { name: 'calories', align: 'center', label: 'Calories', field: 'calories', sortable: true },
-        { name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
-        { name: 'carbs', label: 'Carbs (g)', field: 'carbs' },
-        { name: 'protein', label: 'Protein (g)', field: 'protein' },
-        { name: 'sodium', label: 'Sodium (mg)', field: 'sodium' },
-        { name: 'calcium', label: 'Calcium (%)', field: 'calcium', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) },
-        { name: 'iron', label: 'Iron (%)', field: 'iron', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) }
-      ],
-      data: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          sodium: 87,
-          calcium: '14%',
-          iron: '1%'
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          sodium: 129,
-          calcium: '8%',
-          iron: '1%'
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          sodium: 337,
-          calcium: '6%',
-          iron: '7%'
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          sodium: 413,
-          calcium: '3%',
-          iron: '8%'
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          sodium: 327,
-          calcium: '7%',
-          iron: '16%'
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          sodium: 50,
-          calcium: '0%',
-          iron: '0%'
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          sodium: 38,
-          calcium: '0%',
-          iron: '2%'
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          sodium: 562,
-          calcium: '0%',
-          iron: '45%'
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          sodium: 326,
-          calcium: '2%',
-          iron: '22%'
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          sodium: 54,
-          calcium: '12%',
-          iron: '6%'
-        }
-      ]
-    }
+        slide: 'style',
+        recoms: null,
+    };
+  },
+  filters: {
+    niceDate(value) {
+      return date.formatDate(value, "MMMM D h:mmA");
+    },
   },
   methods: {
-    getSelectedString () {
-      return this.selected.length === 0 ? '' : `${this.selected.length} record${this.selected.length > 1 ? 's' : ''} selected of ${this.data.length}`
-    }
+      clothesRecoms() {
+          Axios.get(
+              "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/recommendations",
+              ).then((res) => {
+            console.log(res);
+            this.recoms = res;
+            });
+        }
+    },
+  mounted() {
+      this.clothesRecoms();
   }
-}
+};
 </script>
+
+
+<style lang="sass">
+.card-post
+  .q-img
+    min-height: 300px
+</style>
