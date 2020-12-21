@@ -1,37 +1,30 @@
 <template >
-  <div id="app">
-    <div style="margin: 10% 25%">
-      <br />
-      <!-- <ejs-autocomplete
-        :dataSource="dataItem"
-        :fields="dataFields"
-        placeholder="친구를 찾아보세요"
-        popupWidth="250px"
-        popupHeight="400px"
+  <div>
+    <div style="margin-top: 15%; margin-bottom: 13%">
+      <input class="input_box" @input="myChange" />
+      <q-btn @click="ssearch">검색</q-btn>
+    </div>
+    <div v-if="searched_user != null">
+      <q-separator class="lineline" />
+
+      <q-item-label style="margin-top: 3%" header>검색 결과</q-item-label>
+
+      <q-item
+        style="margin-bottom: 3%"
+        v-for="item in searched_user.data"
+        :key="`none-${item}`"
       >
-      </ejs-autocomplete -->
-      <input v-model="message" placeholder="친구를 찾아보세요" />
-      <q-btn
-        unelevated
-        color="primary"
-        label="검색"
-        v-on:click="search(`${message}`)"
-      />
-      <!-- 친구 목록 -->
-      <q-item-label header>친구</q-item-label>
-      <q-item v-if="searchFriend.data.name != null">
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white">
-            {{ searchFriend.data.name.slice(0, 1) }}
+            {{ item["name"].slice(0, 1) }}
           </q-avatar>
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ searchFriend.data.name }}</q-item-label>
-          <q-item-label caption lines="1">{{
-            searchFriend.data.email
-          }}</q-item-label>
+          <q-item-label>{{ item["name"] }}</q-item-label>
+          <q-item-label caption lines="1">{{ item["email"] }}</q-item-label>
         </q-item-section>
+        <q-btn>프로필 보기</q-btn>
       </q-item>
     </div>
   </div>
@@ -40,39 +33,46 @@
 
 
 <script>
-import Vue from "vue";
-import { AutoCompletePlugin } from "@syncfusion/ej2-vue-dropdowns";
-Vue.use(AutoCompletePlugin);
-import { DataManager, WebApiAdaptor } from "@aws-amplify/ui-components";
-
 import Axios from "axios";
-import { mapGetters } from "vuex";
-
-export default Vue.extend({
+export default {
   data: function () {
     return {
-      searchFriend: null,
-      message: "mj",
+      name: null,
+      searched_user: null,
     };
   },
-  computed: {
-    ...mapGetters({
-      idToken: "account/idToken",
-    }),
-  },
   methods: {
-    async search(name) {
-      this.searchFriend = await Axios.get(
+    async ssearch() {
+      console.log("들어옴");
+      this.searched_user = await Axios.get(
         "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/search/".concat(
-          name
+          this.name
         )
       );
-      console.log("name >>>", this.searchFriend);
+      console.log(this.searched_user);
+    },
+
+    myChange($event) {
+      this.name = $event.target.value;
     },
   },
-});
+};
 </script>
 
 <style>
 @import url(https://cdn.syncfusion.com/ej2/material.css);
+.input_box {
+  width: 50%;
+  margin-left: 15%;
+  margin-right: 2%;
+
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0.00937em;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(221, 221, 221, 0.911);
+  color: rgba(0, 0, 0, 0.87);
+  padding: 2px 10px;
+}
 </style>

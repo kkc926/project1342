@@ -10,14 +10,13 @@
           BetweenCloset
         </q-toolbar-title>
         
+        <q-btn label="정보" v-on:click="checkUser"
+        flat/>
         <q-btn class="loginbtn" 
         v-if="user==null" label="로그인" v-on:click="gLogin" 
         flat/>
-        <q-btn label="정보" v-on:click="checkUser"
-        flat/>
         <!-- <q-btn label="정보2" v-on:click="testAxios"
         flat/> -->
-        <q-btn label="유저" v-on:click="getUserName" flat/>
         <q-btn v-if="user!=null" label="로그아웃" v-on:click="signOut" 
         flat/>
         <!-- {{user.data.name}} -->

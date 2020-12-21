@@ -10,6 +10,7 @@
         narrow-indicator
       >
         <q-tab name="outfit" label="코디" />
+        <q-tab name="history" label="히스토리" />
         <q-tab name="clothes" label="옷" />
       </q-tabs>
 
@@ -19,7 +20,9 @@
         <q-tab-panel class="panel" name="outfit">
           <outfit-images />
         </q-tab-panel>
-
+        <q-tab-panel class="panel" name="history">
+          <outfit-images />
+        </q-tab-panel>
         <q-tab-panel class="panel" name="clothes">
           <clothes-outfit-images />
         </q-tab-panel>
