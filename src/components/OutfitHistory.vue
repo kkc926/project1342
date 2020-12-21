@@ -1,30 +1,37 @@
 <template>
-  <div class="q-pa-xs" style="margin: 0; padding: 0">
-    <div class="q-gutter-y-xs" style="max-width: 600px; margin: 0; padding: 0">
-      <div
-        class="row q-col"
-        style="margin: 0; padding: 0"
-      >
-        <div class="col-4" v-for="n in 9" :key="`none-${n}`" style="margin:0, padding: 0;">
-          <div class="my-content" v-on:click="dessClicked()" style="margin:0, padding: 0;">
-            <q-card style="border-radius: 0; box-shadow: 0; margin: 0; padding: 0;">
+ <div class="q-px-lg q-pb-md">
+    <q-timeline color="secondary">
+      <q-timeline-entry>
+        <template v-slot:title>
+          Event Title
+        </template>
+        <template v-slot:subtitle>
+          February 22, 1986
+        </template>
+
+        <div>
+          <q-card style="border-radius: 0; box-shadow: 0; margin: 0; padding: 0;">
               <q-img
                 src="https://i0.codibook.net/files/thumb/big/1975072941997/1bbfba10c854/1809426185.jpg"
               />
             </q-card>
-          </div>
         </div>
+      </q-timeline-entry>
 
-        <!-- <div class="col-4" v-for="item in clothes.data" :key="`none-${item}`">
-          <div class="my-content">
-            <q-card style="border-radius: 0; box-shadow: 0">
-              <q-img :src="item.url" />
-            </q-card>
-          </div>
-        </div> -->
-      </div>
-    </div>
-  </div>
+      <q-timeline-entry icon="delete">
+        <template v-slot:title>
+          Event Title
+        </template>
+        <template v-slot:subtitle>
+          February 21, 1986
+        </template>
+
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </q-timeline-entry>
+    </q-timeline>
+ </div>
 </template>
 
 <script>
@@ -32,7 +39,7 @@ import Axios from "axios";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "OutfitImages",
+  name: "OutfitHistory",
   data() {
     return {
       tab: "top",
