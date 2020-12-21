@@ -26,7 +26,7 @@
           <q-btn
             unelevated
             rounded
-            color="primary"
+            color="pink-4"
             label="수락"
             v-on:click="accept(`${friend.user_id}`)"
           />
@@ -65,7 +65,8 @@
         v-ripple
       >
         <q-item-section avatar>
-          <q-avatar color="primary" text-color="white">
+          <!-- <q-avatar color="primary" text-color="white"> -->
+          <q-avatar color="pink-4" text-color="white">
             {{ friend.name.slice(0, 1) }}
           </q-avatar>
         </q-item-section>

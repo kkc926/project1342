@@ -67,7 +67,7 @@ export default {
 <style>
 @import url(https://cdn.syncfusion.com/ej2/material.css);
 .input_box {
-  width: 270px;
+  width: 240px;
   margin-left: 15%;
   margin-right: 0%;
 
