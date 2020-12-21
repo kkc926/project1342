@@ -20,7 +20,7 @@
         </q-item>
         <q-item class="align-right">
           <q-item-section style="padding:0px;">
-            <q-btn color="grey" icon-right="send" label="코디 하러 가기" />
+            <q-btn color="grey" icon-right="send" label="코디 하러 가기" @click="$router.replace(`/outfitselect`)" />
           </q-item-section>
             
         </q-item>

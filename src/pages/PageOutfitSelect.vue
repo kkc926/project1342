@@ -7,12 +7,13 @@
             <div
                 class="col-4"
                 v-for="item in top.data"
-                :key="`none-${item}`"
+                :key="item.clothes_id"
             >
                 <div class="my-content">
                 <q-card style="border-radius: 0; box-shadow: 0">
+                    {{item.clothes_id}}
                     <q-img :src="item.url" />
-                    <q-checkbox v-model="val" />
+                    <q-checkbox :true-value="selectedtop" :name="item.clothes_id" :val="item.clothes_id" v-model="selectedtop" @input="checkOutfit()" />
                 </q-card>
                 </div>
             </div>
@@ -25,11 +26,12 @@
             <div
                 class="col-4"
                 v-for="item in bottom.data"
-                :key="`none-${item}`"
+                :key="item.clothes_id"
             >
                 <div class="my-content">
                 <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img :src="item.url" />
+                    <q-checkbox :true-value="selected" :val="selelctedBottom" :v-model="selected.bottom" />
                 </q-card>
                 </div>
             </div>
@@ -41,11 +43,12 @@
             <div
                 class="col-4"
                 v-for="item in outer.data"
-                :key="`none-${item}`"
+                :key="item.clothes_id"
             >
                 <div class="my-content">
                 <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img :src="item.url" />
+                    <q-checkbox true-value="selected" value="selelctedOuter" v-model="selected.outer" />
                 </q-card>
                 </div>
             </div>
@@ -57,11 +60,12 @@
             <div
                 class="col-4"
                 v-for="item in onepiece.data"
-                :key="`none-${item}`"
+                :key="item.clothes_id"
             >
                 <div class="my-content">
                 <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img :src="item.url" />
+                    <q-checkbox true-value="selected" value="selelctedOnepiece" v-model="selected.onepiece" />
                 </q-card>
                 </div>
             </div>
@@ -75,11 +79,18 @@ import { mapGetters } from "vuex";
 export default {
     data() {
         return {
+        tempVal:[false,false,false],
         top: null,
         bottom: null,
         outer: null,
         onepiece: null,
-        val: null
+        selectedtop: null,
+        selected:{
+            top: null,
+            bottom: null,
+            outer: null,
+            onepiece: null
+        }
         };
     },
     mounted () {
@@ -125,7 +136,9 @@ export default {
             });
             console.log("finished");
         },
-
+        checkOutfit() {
+            console.log(this.selectedtop);
+        }
     } 
 }
 </script>
