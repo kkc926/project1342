@@ -1,4 +1,3 @@
-
 const routes = [
   {
     path: '/',
@@ -9,7 +8,7 @@ const routes = [
       { path: '/friendsearch', component: () => import('pages/PageFriendSearch.vue') },
       { path: '/mypage', name: 'PageProfile', component: () => import('pages/PageProfile.vue') },
       { path: '/recommendations', component: () => import('pages/PageRecommendations.vue') },
-      { path: '/outfitselect', component: () => import('pages/PageOutfitSelect.vue') },
+      { path: '/outfitselect', name: 'PageOutfitSelect', component: () => import('pages/PageOutfitSelect.vue') },
       { path: '/sendOutfit', name: 'PageMakeCodi', component: () => import('pages/PageMakeCodi.vue') }
 
     ]

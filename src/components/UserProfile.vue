@@ -22,7 +22,18 @@
           <q-item-label caption class="caption"> 친구 </q-item-label>
         </q-item-section>
       </q-item>
+      <q-item class="align-right">
+        <q-item-section style="padding: 0px">
+          <q-btn
+            color="grey"
+            icon-right="send"
+            label="코디 하러 가기"
+            @click="$router.replace(`/outfitselect`)"
+          />
+        </q-item-section>
+      </q-item>
     </div>
+
     <!-- 친구 -->
     <div v-if="user != null">
       <q-item>
@@ -44,18 +55,20 @@
           <q-item-label caption class="caption"> 친구 </q-item-label>
         </q-item-section>
       </q-item>
-    </div>
 
-    <q-item class="align-right">
-      <q-item-section style="padding: 0px">
-        <q-btn
-          color="grey"
-          icon-right="send"
-          label="코디 하러 가기"
-          @click="$router.replace(`/outfitselect`)"
-        />
-      </q-item-section>
-    </q-item>
+      <q-item class="align-right">
+        <q-item-section style="padding: 0px">
+          <router-link
+            :to="{
+              name: 'PageOutfitSelect',
+              params: { friend_id: user.user_id },
+            }"
+          >
+            <q-btn label="코디 하러 가기" />
+          </router-link>
+        </q-item-section>
+      </q-item>
+    </div>
   </q-list>
   <!-- </div> -->
   <!-- <q-item-label>{{userName}}</q-item-label> -->
@@ -68,6 +81,7 @@ export default {
   mounted() {
     this.test();
   },
+
   data() {
     return {
       tab: "mails",
@@ -75,11 +89,11 @@ export default {
     };
   },
   created() {
-    this.user = this.$route.params.email;
+    this.user = this.$route.params.friend_info;
   },
   methods: {
     test() {
-      console.log(">>>>>>>>>>", this.user);
+      console.log(">>>>>prop friend>>>>>", this.friend);
     },
   },
   computed: {

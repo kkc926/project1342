@@ -25,8 +25,10 @@
           <q-item-label caption lines="1">{{ item["email"] }}</q-item-label>
         </q-item-section>
 
-        <router-link :to="{ name: 'PageProfile', params: { email: item } }">
-          <q-btn label="프로필 보기" />
+        <router-link
+          :to="{ name: 'PageProfile', params: { friend_info: item } }"
+        >
+          <q-btn label="프로필 보기" style="color: black" />
         </router-link>
       </q-item>
     </div>
