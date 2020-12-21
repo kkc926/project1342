@@ -5,16 +5,16 @@
         <q-avatar size="70px" class="profile">
           <img src="https://cdn.quasar.dev/img/boy-avatar.png" />
         </q-avatar>
-        <q-item-label size="14" caption class="name">정유라</q-item-label>
+        <q-item-label size="15" caption class="name" color="grey-10">정유라</q-item-label>
       </q-item-section>
 
       <q-item-section class="col-4">
         <q-item-label class="number">36</q-item-label>
-        <q-item-label caption> 코디 </q-item-label>
+        <q-item-label caption style="font-size: 14px"> 코디 </q-item-label>
       </q-item-section>
       <q-item-section class="col-4">
         <q-item-label class="number">2</q-item-label>
-        <q-item-label caption> 친구 </q-item-label>
+        <q-item-label caption style="font-size: 14px"> 친구 </q-item-label>
       </q-item-section>
     </q-item>
     <q-separator class="lineline" />
@@ -43,13 +43,16 @@ export default {
   margin-right: 30px;
 }
 .name {
-  margin-left: 5px;
+  margin-left: 10px;
   margin-top: 10px;
   font-size: 16px;
+  font-weight: 700;
+  
 }
 
 .number {
   font-size: 20px;
+  margin-left: 2px;
 }
 .q-list--bordered {
   border: 0px solid rgba(0, 0, 0, 0.12);

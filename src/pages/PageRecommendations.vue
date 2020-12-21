@@ -9,11 +9,11 @@
         height="600px"
         
         flat
-        class="bg-grey-1"
+        class="bg-white"
         >
         <template v-slot:navigation-icon="{ active, btnProps, onClick }">
             <q-btn v-if="active" size="sm" :icon="btnProps.icon" color="pink-5" flat round dense @click="onClick" />
-            <q-btn v-else size="sm" :icon="btnProps.icon" color="white" flat round dense @click="onClick" />
+            <q-btn v-else size="sm" :icon="btnProps.icon" color="grey-3" flat round dense @click="onClick" />
         </template>
 
         <q-carousel-slide name="1st" class="column no-wrap flex-center">
@@ -29,7 +29,7 @@
         <q-separator />
         <q-item>
             <q-btn id="like" flat size="18px" icon="eva-heart" />
-            <div caption>{{item.likes}}명이 좋아했습니다</div>
+            <div class=likes caption>{{item.likes}}명이 좋아했습니다</div>
         </q-item>
     </q-card>
         </q-carousel-slide>
@@ -46,7 +46,7 @@
         <q-separator />
         <q-item>
             <q-btn id="like" flat size="18px" icon="eva-heart" />
-            <div caption>{{item.likes}}명이 좋아했습니다</div>
+            <div class=likes caption>{{item.likes}}명이 좋아했습니다</div>
         </q-item>
     </q-card>
         </q-carousel-slide>
@@ -63,7 +63,7 @@
         <q-separator />
         <q-item>
             <q-btn id="like" flat size="18px" icon="eva-heart" />
-            <div caption>{{item.likes}}명이 좋아했습니다</div>
+            <div class=likes caption>{{item.likes}}명이 좋아했습니다</div>
         </q-item>
     </q-card>
         </q-carousel-slide>
@@ -80,7 +80,7 @@
         <q-separator />
         <q-item>
             <q-btn id="like" flat size="18px" icon="eva-heart" />
-            <div caption>{{item.likes}}명이 좋아했습니다</div>
+            <div class=likes caption>{{item.likes}}명이 좋아했습니다</div>
         </q-item>
     </q-card>
         </q-carousel-slide>
@@ -97,7 +97,7 @@
         <q-separator />
         <q-item>
             <q-btn id="like" flat size="18px" icon="eva-heart" />
-            <div caption>{{item.likes}}명이 좋아했습니다</div>
+            <div class=likes caption>{{item.likes}}명이 좋아했습니다</div>
         </q-item>
     </q-card>
         </q-carousel-slide>
@@ -147,4 +147,8 @@ export default {
   .q-img
     min-height: 320px
     min-width:  320px
+.likes
+  align-self: center
+  font-color: #616161 
+  
 </style>
