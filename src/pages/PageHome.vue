@@ -78,7 +78,8 @@ export default {
       ).then((res) => {
         console.log("success")
       });
-    }
+    },
+    
   },
   computed: {
     ...mapGetters({
