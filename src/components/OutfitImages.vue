@@ -1,79 +1,34 @@
 <template>
-  <div class="q-pa-xs" style="margin: 0; padding: 0">
-    <div class="q-gutter-y-xs" style="max-width: 600px; margin: 0; padding: 0">
-      <div
-        class="row q-col"
-        style="margin: 0; padding: 0"
-      >
-        <div class="col-4" v-for="n in 9" :key="`none-${n}`" style="margin:0, padding: 0;">
-          <div class="my-content" v-on:click="dessClicked()" style="margin:0, padding: 0;">
-            <q-card style="border-radius: 0; box-shadow: 0; margin: 0; padding: 0;">
-              <q-img
-                src="https://i0.codibook.net/files/thumb/big/1975072941997/1bbfba10c854/1809426185.jpg"
-              />
-            </q-card>
-          </div>
-        </div>
+  <div>
+    <img
+      style="
+        max-width: 40%;
+        margin-top: 10%;
+        margin-left: 5%;
+        float: left;
+        border: 1px;
+      "
+      src="https://cropped-photo.s3.us-east-2.amazonaws.com/cv2_test_6015_3879_white.jpg"
+    />
 
-        <!-- <div class="col-4" v-for="item in clothes.data" :key="`none-${item}`">
-          <div class="my-content">
-            <q-card style="border-radius: 0; box-shadow: 0">
-              <q-img :src="item.url" />
-            </q-card>
-          </div>
-        </div> -->
-      </div>
-    </div>
+    <img
+      style="max-width: 50%; margin-top: 20%"
+      src="https://cropped-photo.s3.us-east-2.amazonaws.com/cv2_test_7390_3924_white.jpg"
+    />
+    <img
+      style="max-height: 200px; margin-left: 30%"
+      src="https://cropped-photo.s3.us-east-2.amazonaws.com/cv2_test_516_6320_white.jpg"
+    />
   </div>
 </template>
 
 <script>
-import Axios from "axios";
-import { mapGetters } from "vuex";
-
 export default {
   name: "OutfitImages",
   data() {
-    return {
-      tab: "top",
-      clothes: null,
-      clothesList: { type: Array, default: () => [] },
-    };
+    return {};
   },
-  computed: {
-    ...mapGetters({
-      idToken: "account/idToken",
-    }),
-  },
-  mounted() {
-    this.clothesClicked();
-  },
-  methods: {
-    async clothesClicked() {
-      let reqHeader = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: await this.idToken,
-        },
-      };
-      this.clothes = await Axios.get(
-        "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes",
-        reqHeader
-      );
-      console.log(this.clothes.data);
-    },
-    topClicked() {},
-    bottomClicked() {},
-    outerClicked() {},
-    dessClicked() {
-      console.log("ee");
-    },
-  },
+
+  methods: {},
 };
 </script>
-<style scoped>
-.q-gutter-y-md,
-.q-gutter-md {
-  margin-top: 0;
-}
-</style>
