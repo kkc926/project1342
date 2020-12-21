@@ -11,9 +11,8 @@
             >
                 <div class="my-content">
                 <q-card style="border-radius: 0; box-shadow: 0">
-                    {{item.clothes_id}}
                     <q-img :src="item.url" />
-                    <q-checkbox :true-value="selectedtop" :name="item.clothes_id" :val="item.clothes_id" v-model="selectedtop" @input="checkOutfit()" />
+                    <q-checkbox size="sm" v-model="selected" :val="item" :outfit="selected" @input="checkOutfit()" />
                 </q-card>
                 </div>
             </div>
@@ -31,7 +30,7 @@
                 <div class="my-content">
                 <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img :src="item.url" />
-                    <q-checkbox :true-value="selected" :val="selelctedBottom" :v-model="selected.bottom" />
+                    <q-checkbox size="sm" v-model="selected" :val="item" :outfit="selected" @input="checkOutfit()" />
                 </q-card>
                 </div>
             </div>
@@ -48,7 +47,7 @@
                 <div class="my-content">
                 <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img :src="item.url" />
-                    <q-checkbox true-value="selected" value="selelctedOuter" v-model="selected.outer" />
+                    <q-checkbox size="sm" v-model="selected" :val="item" :outfit="selected" @input="checkOutfit()" />
                 </q-card>
                 </div>
             </div>
@@ -65,10 +64,13 @@
                 <div class="my-content">
                 <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img :src="item.url" />
-                    <q-checkbox true-value="selected" value="selelctedOnepiece" v-model="selected.onepiece" />
+                    <q-checkbox size="sm" v-model="selected" :val="item" :outfit="selected" @input="checkOutfit()" />
                 </q-card>
                 </div>
             </div>
+        </div>
+        <div>
+            <q-btn label="Submit" type="submit" :outfit="selected" color="primary"/>
         </div>
     </q-page>
 </template>
@@ -84,13 +86,7 @@ export default {
         bottom: null,
         outer: null,
         onepiece: null,
-        selectedtop: null,
-        selected:{
-            top: null,
-            bottom: null,
-            outer: null,
-            onepiece: null
-        }
+        selected: [],
         };
     },
     mounted () {
@@ -137,7 +133,7 @@ export default {
             console.log("finished");
         },
         checkOutfit() {
-            console.log(this.selectedtop);
+            console.log(this.selected);
         }
     } 
 }
