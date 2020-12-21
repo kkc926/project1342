@@ -1,22 +1,22 @@
 <template>
-  <q-page class="constrain q-pa-sx">
+  <q-page class="constrain">
       <div class="q-pa-xs">
         <q-carousel
         v-model="slide"
         swipeable
         animated
         navigation
-        height="680px"
+        height="690px"
         
         flat
         class="bg-white"
         >
-        <template v-slot:navigation-icon="{ active, btnProps, onClick }">
+        <template  v-slot:navigation-icon="{ active, btnProps, onClick }">
             <q-btn v-if="active" size="sm" :icon="btnProps.icon" color="pink-5" flat round dense @click="onClick" />
             <q-btn v-else size="sm" :icon="btnProps.icon" color="grey-3" flat round dense @click="onClick" />
         </template>
 
-        <q-carousel-slide name="1st" class="column no-wrap flex-center">
+        <q-carousel-slide name="1st" class="frameAlign column no-wrap flex-center">
                 <q-card
         v-for="item in recoms.data"
                 :key="`none-${item}`"
@@ -33,7 +33,7 @@
         </q-item>
     </q-card>
         </q-carousel-slide>
-        <q-carousel-slide name="2nd" class="column no-wrap flex-center">
+        <q-carousel-slide name="2nd" class="frameAlign column no-wrap flex-center">
           <q-card
         v-for="item in recoms.data"
                 :key="`none-${item}`"
@@ -50,7 +50,7 @@
         </q-item>
     </q-card>
         </q-carousel-slide>
-        <q-carousel-slide name="3rd" class="column no-wrap flex-center">
+        <q-carousel-slide name="3rd" class="frameAlign column no-wrap flex-center">
           <q-card
         v-for="item in recoms.data"
                 :key="`none-${item}`"
@@ -67,7 +67,7 @@
         </q-item>
     </q-card>
         </q-carousel-slide>
-        <q-carousel-slide name="4th" class="column no-wrap flex-center">
+        <q-carousel-slide name="4th" class="frameAlign column no-wrap flex-center">
           <q-card
         v-for="item in recoms.data"
                 :key="`none-${item}`"
@@ -84,7 +84,7 @@
         </q-item>
     </q-card>
         </q-carousel-slide>
-        <q-carousel-slide name="5th" class="column no-wrap flex-center">
+        <q-carousel-slide name="5th" class="frameAlign column no-wrap flex-center">
           <q-card
         v-for="item in recoms.data"
                 :key="`none-${item}`"
@@ -149,6 +149,8 @@ export default {
     min-width:  320px
 .likes
   align-self: center
+.frameAlign
+    margin-top: 290px
 
   
 </style>

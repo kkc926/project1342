@@ -10,13 +10,10 @@
           BetweenCloset
         </q-toolbar-title>
         
-        <q-btn color="grey-8" style="font-size: 14px" label="정보" v-on:click="checkUser"
-        flat/>
+
         <q-btn color="grey-8" style="font-size: 14px" class="loginbtn" 
         v-if="user==null" label="로그인" v-on:click="gLogin" 
         flat/>
-        <!-- <q-btn label="정보2" v-on:click="testAxios"
-        flat/> -->
         <q-btn color="grey-8" style="font-size: 14px" v-if="user!=null" label="로그아웃" v-on:click="signOut" 
         flat/>
         <!-- {{user.data.name}} -->
@@ -178,6 +175,9 @@ export default {
   .q-footer
     .q-tab__icon
       font-size: 30px
+
+  body
+      font-family: 'Nanum Gothic Coding', monospace
 
     
 </style>

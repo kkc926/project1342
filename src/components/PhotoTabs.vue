@@ -17,17 +17,12 @@
       <q-separator />
 
       <q-tab-panels v-model="tab" animated>
-        <!-- 코디 -->
         <q-tab-panel class="panel" name="outfit">
           <outfit-images />
         </q-tab-panel>
-
-        <!-- 히스토리 -->
         <q-tab-panel class="panel" name="history">
-          <outfit-history />
+          <outfit-images />
         </q-tab-panel>
-
-        <!-- 옷 -->
         <q-tab-panel class="panel" name="clothes">
           <clothes-outfit-images />
         </q-tab-panel>
@@ -38,14 +33,12 @@
 <script>
 import ClothesOutfitImages from "src/components/ClothesOutfitImages.vue";
 import OutfitImages from "./OutfitImages.vue";
-import OutfitHistory from './OutfitHistory.vue';
 
 export default {
   name: "PhotoTabs",
   components: {
     ClothesOutfitImages,
     OutfitImages,
-    OutfitHistory,
   },
   data() {
     return {
@@ -55,7 +48,7 @@ export default {
 };
 </script>
 <style scoped>
-.panel {
+.panel{
   margin: 0px;
   padding: 0px;
 }
