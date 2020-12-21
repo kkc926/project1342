@@ -13,14 +13,12 @@
     <div class="row q-col" style="margin: 0 3% 3% 3%; padding: 0">
       <div
         class="col-6"
-        v-for="n in 4"
-        :key="`none-${n}`"
+        v-for="item in outfit"
+        :key="`none-${item}`"
         style="margin:0, padding: 0;"
       >
         <q-card style="border-radius: 0; box-shadow: 0; margin: 0; padding: 0">
-          <q-img
-            src="https://assets.styleship.com/fila/data/productimages/a/4/FE2RSB5101X_YEW.jpg"
-          />
+          <q-img :src="item.cropped" style="float: left" />
         </q-card>
       </div>
     </div>
@@ -34,7 +32,29 @@
 </template>
 
 <script>
-export default {};
+import PageOutfitSelect from "./PageOutfitSelect";
+
+export default {
+  mounted() {
+    this.test();
+  },
+  data() {
+    return {
+      outfit: null,
+    };
+  },
+  created() {
+    this.outfit = this.$route.params.outfit;
+  },
+  mounted() {
+    this.test();
+  },
+  methods: {
+    test() {
+      console.log(">>>>>>>>>>", this.outfit[0].cropped);
+    },
+  },
+};
 </script>
 <style scoped>
 .top {
