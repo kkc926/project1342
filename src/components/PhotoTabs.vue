@@ -24,7 +24,7 @@
           <outfit-images />
         </q-tab-panel>
         <q-tab-panel class="panel" name="clothes">
-          <clothes-outfit-images />
+          <clothes-outfit-images :friendUserId="this.friend_info_user_id" />
         </q-tab-panel>
       </q-tab-panels>
     </div>
@@ -33,6 +33,8 @@
 <script>
 import ClothesOutfitImages from "src/components/ClothesOutfitImages.vue";
 import OutfitImages from "./OutfitImages.vue";
+import OutfitHistory from "./OutfitHistory.vue";
+
 
 export default {
   name: "PhotoTabs",
@@ -40,10 +42,25 @@ export default {
     ClothesOutfitImages,
     OutfitImages,
   },
+  mounted() {
+    this.test();
+  },
+  methods: {
+    test() {
+      console.log(
+        ">>>>>>>>pageFriendSearch -> Phototab >>>",
+        this.friend_info_user_id
+      );
+    },
+  },
   data() {
     return {
       tab: "mails",
+      friend_info_user_id: null,
     };
+  },
+  created() {
+    this.friend_info_user_id = this.$route.params.friend_info.user_id;
   },
 };
 </script>
