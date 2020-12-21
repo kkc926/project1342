@@ -27,11 +27,7 @@
               class="row q-col-gutter-x-xs q-col-gutter-y-lg"
               style="margin: 0; padding: 0"
             >
-              <div
-                class="col-4"
-                v-for="item in clothes.data"
-                :key="`none-${item}`"
-              >
+              <div class="col-4" v-for="item in top.data" :key="`none-${item}`">
                 <div class="my-content">
                   <q-card style="border-radius: 0; box-shadow: 0">
                     <q-img :src="item.url" />
@@ -47,18 +43,9 @@
               class="row q-col-gutter-x-xs q-col-gutter-y-lg"
               style="margin: 0; padding: 0"
             >
-              <div class="col-4" v-for="n in 1" :key="`none-${n}`">
-                <div class="my-content" v-on:click="outerClicked()">
-                  <q-card style="border-radius: 0; box-shadow: 0">
-                    <q-img
-                      src="https://simage-kr.uniqlo.com/goods/31/13/40/60/428685_COL_COL67_1000.jpg"
-                    />
-                  </q-card>
-                </div>
-              </div>
-              <!-- <div
+              <div
                 class="col-4"
-                v-for="item in clothes.data"
+                v-for="item in bottom.data"
                 :key="`none-${item}`"
               >
                 <div class="my-content">
@@ -66,7 +53,7 @@
                     <q-img :src="item.url" />
                   </q-card>
                 </div>
-              </div> -->
+              </div>
             </div>
           </q-tab-panel>
 
@@ -76,12 +63,14 @@
               class="row q-col-gutter-x-xs q-col-gutter-y-lg"
               style="margin: 0; padding: 0"
             >
-              <div class="col-4" v-for="n in 1" :key="`none-${n}`">
-                <div class="my-content" v-on:click="outerClicked()">
+              <div
+                class="col-4"
+                v-for="item in outer.data"
+                :key="`none-${item}`"
+              >
+                <div class="my-content">
                   <q-card style="border-radius: 0; box-shadow: 0">
-                    <q-img
-                      src="https://m.darbydean.com/web/product/big/2018-01/180129-c-07.jpg"
-                    />
+                    <q-img :src="item.url" />
                   </q-card>
                 </div>
               </div>
@@ -94,12 +83,14 @@
               class="row q-col-gutter-x-xs q-col-gutter-y-lg"
               style="margin: 0; padding: 0"
             >
-              <div class="col-4" v-for="n in 1" :key="`none-${n}`">
-                <div class="my-content" v-on:click="dessClicked()">
+              <div
+                class="col-4"
+                v-for="item in dress.data"
+                :key="`none-${item}`"
+              >
+                <div class="my-content">
                   <q-card style="border-radius: 0; box-shadow: 0">
-                    <q-img
-                      src="https://img.lfmall.co.kr/file/product/prd/BO11/2010/640/BO11XX00675_00.jpg"
-                    />
+                    <q-img :src="item.url" />
                   </q-card>
                 </div>
               </div>
@@ -120,36 +111,149 @@ export default {
   data() {
     return {
       tab: "top",
-      clothes: null,
+      top: null,
+      bottom: null,
+      outer: null,
+      dress: null,
     };
   },
+
+  props: {
+    friendUserId: null,
+  },
+
   computed: {
     ...mapGetters({
       idToken: "account/idToken",
     }),
   },
   mounted() {
-    this.clothesClicked();
+    this.topClicked();
+    this.bottomClicked();
+    this.outerClicked();
+    this.dressClicked();
   },
   methods: {
-    async clothesClicked() {
-      let reqHeader = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: await this.idToken,
-        },
-      };
-      this.clothes = await Axios.get(
-        "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/filter/top",
-        reqHeader
-      );
-      console.log("clothes data >", this.clothes.data);
+    async topClicked() {
+      if (this.friendUserId != null) {
+        console.log("not null");
+        let reqHeader = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: await this.idToken,
+          },
+        };
+        this.top = await Axios.get(
+          "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/" +
+            this.friendUserId +
+            "/filter/top",
+          reqHeader
+        );
+      } else {
+        console.log("null");
+        let reqHeader = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: await this.idToken,
+          },
+        };
+        this.top = await Axios.get(
+          "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/filter/top",
+          reqHeader
+        );
+      }
+      console.log("top data >", this.top.data);
     },
-    topClicked() {},
-    bottomClicked() {},
-    outerClicked() {},
-    dessClicked() {
-      console.log("ee");
+
+    async bottomClicked() {
+      if (this.friendUserId != null) {
+        console.log("not null");
+        let reqHeader = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: await this.idToken,
+          },
+        };
+        this.bottom = await Axios.get(
+          "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/" +
+            this.friendUserId +
+            "/filter/bottom",
+          reqHeader
+        );
+      } else {
+        console.log("null");
+        let reqHeader = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: await this.idToken,
+          },
+        };
+        this.bottom = await Axios.get(
+          "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/filter/bottom",
+          reqHeader
+        );
+      }
+      console.log("bottom data >", this.bottom.data);
+    },
+    async outerClicked() {
+      if (this.friendUserId != null) {
+        console.log("not null");
+        let reqHeader = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: await this.idToken,
+          },
+        };
+        this.outer = await Axios.get(
+          "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/" +
+            this.friendUserId +
+            "/filter/outer",
+          reqHeader
+        );
+      } else {
+        console.log("null");
+        let reqHeader = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: await this.idToken,
+          },
+        };
+        this.outer = await Axios.get(
+          "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/filter/outer",
+          reqHeader
+        );
+      }
+      console.log("outer data >", this.outer.data);
+    },
+    async dressClicked() {
+      if (this.friendUserId != null) {
+        console.log("not null");
+        let reqHeader = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: await this.idToken,
+          },
+        };
+        this.dress = await Axios.get(
+          "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/" +
+            this.friendUserId +
+            "/filter/dress",
+          reqHeader
+        );
+      } else {
+        console.log("null");
+        let reqHeader = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: await this.idToken,
+          },
+        };
+        this.dress = await Axios.get(
+          "https://zizqnx33mi.execute-api.us-east-2.amazonaws.com/dev/clothes/filter/dress",
+          reqHeader
+        );
+      }
+      console.log("dress data >", this.dress.data);
     },
   },
 };

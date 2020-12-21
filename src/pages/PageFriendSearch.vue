@@ -1,13 +1,13 @@
 <template >
   <div>
-    <div style="margin-top: 15%; margin-bottom: 13%" >
-      <input class="input_box  bg-grey-2" @input="myChange" />
-      <q-btn @click="ssearch" icon='eva-search-outline' flat></q-btn>
+    <div style="margin-top: 15%; margin-bottom: 13%">
+      <input class="input_box bg-grey-2" @input="myChange" />
+      <q-btn @click="ssearch" icon="eva-search-outline" flat></q-btn>
     </div>
     <div v-if="searched_user != null">
       <q-separator class="lineline" />
 
-      <q-item-label class= "search_result" header>검색 결과</q-item-label>
+      <q-item-label class="search_result" header>검색 결과</q-item-label>
 
       <q-item
         style="margin-bottom: 3%"
@@ -24,7 +24,12 @@
           <q-item-label>{{ item["name"] }}</q-item-label>
           <q-item-label caption lines="1">{{ item["email"] }}</q-item-label>
         </q-item-section>
-        <q-btn>프로필 보기</q-btn>
+
+        <router-link
+          :to="{ name: 'PageProfile', params: { friend_info: item } }"
+        >
+          <q-btn label="프로필 보기" style="color: black" />
+        </router-link>
       </q-item>
     </div>
   </div>
@@ -75,9 +80,8 @@ export default {
   color: rgba(0, 0, 0, 0.87);
   padding: 2px 10px;
 }
-.search_result{
+.search_result {
   text-align-last: center;
   margin-top: 3%;
-  
 }
 </style>
