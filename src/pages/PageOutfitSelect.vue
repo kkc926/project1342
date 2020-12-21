@@ -80,7 +80,7 @@
     </div>
     <div>
       <router-link :to="{ name: 'PageMakeCodi', params: { outfit: selected } }">
-        <q-btn label="Submit" type="submit" :outfit="selected" color="primary"
+        <q-btn label="Submit" type="submit" :outfit="selected" color="pink-4"
       /></router-link>
     </div>
   </q-page>

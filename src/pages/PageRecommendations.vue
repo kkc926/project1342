@@ -6,7 +6,7 @@
         swipeable
         animated
         navigation
-        height="600px"
+        height="680px"
         
         flat
         class="bg-white"
@@ -149,6 +149,6 @@ export default {
     min-width:  320px
 .likes
   align-self: center
-  font-color: #616161 
+
   
 </style>
