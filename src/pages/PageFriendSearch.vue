@@ -1,13 +1,13 @@
 <template >
   <div>
-    <div style="margin-top: 15%; margin-bottom: 13%">
-      <input class="input_box" @input="myChange" />
-      <q-btn @click="ssearch">검색</q-btn>
+    <div style="margin-top: 15%; margin-bottom: 13%" >
+      <input class="input_box  bg-grey-2" @input="myChange" />
+      <q-btn @click="ssearch" icon='eva-search-outline' flat></q-btn>
     </div>
     <div v-if="searched_user != null">
       <q-separator class="lineline" />
 
-      <q-item-label style="margin-top: 3%" header>검색 결과</q-item-label>
+      <q-item-label class= "search_result" header>검색 결과</q-item-label>
 
       <q-item
         style="margin-bottom: 3%"
@@ -62,9 +62,9 @@ export default {
 <style>
 @import url(https://cdn.syncfusion.com/ej2/material.css);
 .input_box {
-  width: 50%;
+  width: 270px;
   margin-left: 15%;
-  margin-right: 2%;
+  margin-right: 0%;
 
   font-weight: 400;
   line-height: 30px;
@@ -74,5 +74,10 @@ export default {
   background-color: rgba(221, 221, 221, 0.911);
   color: rgba(0, 0, 0, 0.87);
   padding: 2px 10px;
+}
+.search_result{
+  text-align-last: center;
+  margin-top: 3%;
+  
 }
 </style>
