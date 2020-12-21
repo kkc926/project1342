@@ -62,7 +62,7 @@ export default {
   padding-bottom: 30px;
 }
 .name {
-  margin-left: 5px;
+  margin-left: 9px;
   margin-top: 10px;
   font-size: 16px;
 }
@@ -73,6 +73,7 @@ export default {
 
 .number {
   font-size: 20px;
+  margin-left: 2px;
 }
 
 

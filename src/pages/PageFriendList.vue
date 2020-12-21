@@ -26,13 +26,16 @@ export default {
   margin-right: 30px;
 }
 .name {
-  margin-left: 5px;
+  margin-left: 10px;
   margin-top: 10px;
   font-size: 16px;
+  font-weight: 700;
+  
 }
 
 .number {
   font-size: 20px;
+  margin-left: 2px;
 }
 .q-list--bordered {
   border: 0px solid rgba(0, 0, 0, 0.12);
