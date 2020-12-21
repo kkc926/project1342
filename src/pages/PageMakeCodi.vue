@@ -46,9 +46,6 @@ export default {
   created() {
     this.outfit = this.$route.params.outfit;
   },
-  mounted() {
-    this.test();
-  },
   methods: {
     test() {
       console.log(">>>>>>>>>>", this.outfit[0].cropped);
